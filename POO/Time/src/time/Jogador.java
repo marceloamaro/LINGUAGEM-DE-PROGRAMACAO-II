@@ -7,19 +7,14 @@ public class Jogador {
     private int anoNascimento;
     private char posicao;
     private String nacionalidade;
-    private double altura;
+    private int altura;
 
-    public Jogador(String nome, int anoNascimento, char posicao, String nacionalidade, double altura, float peso) {
+    public Jogador(String nome, int anoNascimento, char posicao, String nacionalidade, int altura) {
         this.nome = nome;
         this.anoNascimento = anoNascimento;
         this.posicao = posicao;
         this.nacionalidade = nacionalidade;
         this.altura = altura;
-        this.peso = peso;
-    }
-
-    Jogador(String marcelo, int i, char c, String mombaca) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
    
@@ -56,25 +51,13 @@ public class Jogador {
         this.nacionalidade = nacionalidade;
     }
 
-    public double getAltura() {
+    public int getAltura() {
         return altura;
     }
 
-    public void setAltura(double altura) {
+    public void setAltura(int altura) {
         this.altura = altura;
     }
-
-    public float getPeso() {
-        return peso;
-    }
-
-    public void setPeso(float peso) {
-        this.peso = peso;
-    }
-    private float peso;
-
-
-  
     
     public void exibirJogador() {
         System.out.println(""
@@ -130,6 +113,10 @@ public class Jogador {
     }
 
     void setAltura(int i, int i0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void setPeso(int i) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

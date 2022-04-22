@@ -10,7 +10,7 @@ public class Time {
         marcelo = new Jogador("Marcelo",1992, 'A', "Mombaca");
         
         marcelo.calcularIdade(2022);
-        marcelo.setAltura(1,7);
+        marcelo.setAltura(170);
         marcelo.setPeso(68);
         marcelo.exibirJogador();
         marcelo.verificarAposentadoria();

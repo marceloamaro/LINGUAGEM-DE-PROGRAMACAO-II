@@ -6,11 +6,11 @@ public class Jogador {
     private String nome;
     private String nacionalidade;
     private int anoNascimento;
-    private int altura;
+    private double altura;
     private int peso;
     private char posicao;
 
-    public Jogador(String nome, String nacionalidade, int anoNascimento, int altura, int peso, char posicao) {
+    public Jogador(String nome, String nacionalidade, int anoNascimento, double altura, int peso, char posicao) {
         this.nome = nome;
         this.nacionalidade = nacionalidade;
         this.anoNascimento = anoNascimento;
@@ -43,11 +43,11 @@ public class Jogador {
         this.anoNascimento = anoNascimento;
     }
 
-    public int getAltura() {
+    public double getAltura() {
         return altura;
     }
 
-    public void setAltura(int altura) {
+    public void setAltura(double altura) {
         this.altura = altura;
     }
 

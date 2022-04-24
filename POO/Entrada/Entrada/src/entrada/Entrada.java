@@ -11,11 +11,13 @@ package entrada;
  */
 public class Entrada {
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+        Ingresso normal = new Ingresso();
+        normal.imprimirValor();
+        
+        IngressoVip vip = new IngressoVip();
+        vip.imprimirValor();
     }
     
 }

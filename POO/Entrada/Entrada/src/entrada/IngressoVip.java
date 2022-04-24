@@ -3,25 +3,18 @@ package entrada;
 
 
 public class IngressoVip extends Ingresso {
-    private double valorVip;
-    
-    public IngressoVip(double valor) {
-        super(valor);
+
+    public IngressoVip() {
+        this.valor = (float) (this.valor + 10.00);
     }
 
-    public double getValorVip() {
-        return valorVip;
+   public float getValorVip() {
+        return valor;
     }
 
-    public void setValorVip(double valorVip) {
-        this.valorVip = valorVip;
+    public void setValorVip(float valor) {
+        this.valor = valor;
     }
-
-    public IngressoVip(double valorVip, double valor) {
-        super(valor);
-        this.valorVip = valorVip;
-    }
-    
-    
     
 }
+

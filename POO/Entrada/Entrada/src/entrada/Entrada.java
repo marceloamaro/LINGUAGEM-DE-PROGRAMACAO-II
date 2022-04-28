@@ -13,11 +13,9 @@ public class Entrada {
 
     
     public static void main(String[] args) {
-        Ingresso normal = new Ingresso();
-        normal.imprimirValor();
-        
-        IngressoVip vip = new IngressoVip();
-        vip.imprimirValor();
+       Ingresso normal = new Ingresso();
+       normal.imprimirValor();
+       IngressoVip vip = new IngressoVip();
+       vip.imprimirValor();
     }
-    
 }

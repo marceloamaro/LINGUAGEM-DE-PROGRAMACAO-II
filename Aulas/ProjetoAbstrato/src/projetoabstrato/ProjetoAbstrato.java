@@ -16,7 +16,7 @@ public class ProjetoAbstrato {
         //System.out.println("Sobrenome: " + joao.getSobrenome());
         //System.out.println("CPF: " + joao.getCpf());
         System.out.println("=====================================");
-        Comissionario c = new Comissionario(5000, 5, "Paulo", "da silva", "123.765.986-45");
+        Comissionario c = new Comissionario(50000, 5, "Paulo", "da silva", "123.765.986-45");
         //System.out.println(c.getNome() + " Recebe: " + c.vencimento());
         c.exibir();
         System.out.println("=====================================");

@@ -5,6 +5,10 @@
  */
 package erros;
 
+import java.awt.Color;
+import java.util.Random;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ϞAmaroₘⱼ
@@ -30,11 +34,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        numeroinformado = new javax.swing.JTextField();
+        numInformado = new javax.swing.JTextField();
         btnGerar = new javax.swing.JButton();
+        lblNumGerado = new javax.swing.JLabel();
+        lblResultado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("JOGO DE AZAR");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -46,11 +53,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Escolha um numero de 0 a 10");
 
-        numeroinformado.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
-        numeroinformado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        numeroinformado.addActionListener(new java.awt.event.ActionListener() {
+        numInformado.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
+        numInformado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        numInformado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numeroinformadoActionPerformed(evt);
+                numInformadoActionPerformed(evt);
             }
         });
 
@@ -64,38 +71,57 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lblNumGerado.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        lblNumGerado.setForeground(new java.awt.Color(255, 255, 255));
+        lblNumGerado.setText("?");
+
+        lblResultado.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        lblResultado.setForeground(new java.awt.Color(255, 255, 255));
+        lblResultado.setText("ERROU OU ACERTOU !!");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(236, Short.MAX_VALUE)
+                .addGap(236, 236, 236)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(295, 295, 295))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(219, 219, 219))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(328, 328, 328)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(numeroinformado, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnGerar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(numInformado, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(331, 331, 331))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(131, 131, 131)
+                .addComponent(lblNumGerado, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblResultado)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(86, 86, 86)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(38, 38, 38)
-                .addComponent(numeroinformado, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(numInformado)
                 .addGap(18, 18, 18)
-                .addComponent(btnGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addComponent(btnGerar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNumGerado, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -106,18 +132,46 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void numeroinformadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroinformadoActionPerformed
+    private void numInformadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numInformadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_numeroinformadoActionPerformed
+    }//GEN-LAST:event_numInformadoActionPerformed
 
     private void btnGerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarActionPerformed
-        // TODO add your handling code here:
+        Random r = new Random();
+        int numGerado = r.nextInt(10);
+        
+        try{
+            int numInformado = Integer.parseInt(this.numInformado.getText());
+            if(numInformado >= 0 && numInformado <=10){
+                
+                lblNumGerado.setText(Integer.toString(numGerado));
+                
+                if(numInformado == numGerado){
+                    lblResultado.setText("VOCE ACERTOU!!!");
+                    lblResultado.setForeground(Color.green);
+                }else{
+                    lblResultado.setText("VOCE ERROU!!!");
+                    lblResultado.setForeground(Color.red);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "OPS!, informe um numero de 0 a 10!");
+                this.numInformado.setText("");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "informe apenas valores numericos");
+            this.numInformado.setText("");
+        }
+        
     }//GEN-LAST:event_btnGerarActionPerformed
 
     /**
@@ -160,6 +214,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField numeroinformado;
+    private javax.swing.JLabel lblNumGerado;
+    private javax.swing.JLabel lblResultado;
+    private javax.swing.JTextField numInformado;
     // End of variables declaration//GEN-END:variables
 }

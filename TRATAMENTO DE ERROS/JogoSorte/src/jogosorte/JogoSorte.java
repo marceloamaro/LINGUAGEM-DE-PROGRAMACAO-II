@@ -11,7 +11,9 @@ public class JogoSorte {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        TelaPrincipal tela = new TelaPrincipal();
+        tela.show();
+        
     }
     
 }

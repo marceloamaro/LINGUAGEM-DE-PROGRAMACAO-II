@@ -68,16 +68,16 @@ public class Princinpal extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/images.png"))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel3.setForeground(java.awt.Color.black);
         jLabel3.setText("Digite o primeiro valor:");
 
-        jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel4.setForeground(java.awt.Color.black);
         jLabel4.setText("Digite o segundo valor:");
 
         btnSub.setBackground(java.awt.Color.white);
-        btnSub.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        btnSub.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         btnSub.setForeground(java.awt.Color.black);
         btnSub.setText("- Substração");
         btnSub.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +87,7 @@ public class Princinpal extends javax.swing.JFrame {
         });
 
         btnSoma.setBackground(java.awt.Color.white);
-        btnSoma.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        btnSoma.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         btnSoma.setForeground(java.awt.Color.black);
         btnSoma.setText("+ Adição");
         btnSoma.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +97,7 @@ public class Princinpal extends javax.swing.JFrame {
         });
 
         btnMult.setBackground(java.awt.Color.white);
-        btnMult.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        btnMult.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         btnMult.setForeground(java.awt.Color.black);
         btnMult.setText("x Multiplicação");
         btnMult.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +107,7 @@ public class Princinpal extends javax.swing.JFrame {
         });
 
         btnDivisao.setBackground(java.awt.Color.white);
-        btnDivisao.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        btnDivisao.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         btnDivisao.setForeground(java.awt.Color.black);
         btnDivisao.setText("/ Divisão");
         btnDivisao.addActionListener(new java.awt.event.ActionListener() {
@@ -116,13 +116,14 @@ public class Princinpal extends javax.swing.JFrame {
             }
         });
 
+        Resultado.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         Resultado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ResultadoActionPerformed(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel5.setForeground(java.awt.Color.black);
         jLabel5.setText("Resultado");
 
@@ -139,7 +140,9 @@ public class Princinpal extends javax.swing.JFrame {
                                 .addComponent(jLabel3))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(96, 96, 96)
-                                .addComponent(Valor1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnSoma)
+                                    .addComponent(Valor1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(78, 78, 78)
                         .addComponent(jLabel2)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,25 +155,21 @@ public class Princinpal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(261, 261, 261)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
                                 .addComponent(btnSub)
-                                .addGap(38, 38, 38)
+                                .addGap(67, 67, 67)
                                 .addComponent(btnDivisao)
-                                .addGap(73, 73, 73)
+                                .addGap(62, 62, 62)
                                 .addComponent(btnMult))
-                            .addComponent(jLabel1)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(368, 368, 368)
-                        .addComponent(jLabel5))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(358, 358, 358)
-                        .addComponent(Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(94, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(129, 129, 129)
-                    .addComponent(btnSoma)
-                    .addContainerGap(632, Short.MAX_VALUE)))
+                        .addComponent(jLabel5)))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,17 +194,13 @@ public class Princinpal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSub)
                     .addComponent(btnMult)
-                    .addComponent(btnDivisao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                    .addComponent(btnDivisao)
+                    .addComponent(btnSoma))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(381, Short.MAX_VALUE)
-                    .addComponent(btnSoma)
-                    .addGap(209, 209, 209)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -245,12 +240,25 @@ public class Princinpal extends javax.swing.JFrame {
             Resultado.setText(Double.toString(result));
         
         }catch(Exception e){
-            System.out.println("Ops! Informe valores válidos"); 
+           
+            Resultado.setText("Ops! Informe valores válidos");
         }
     }//GEN-LAST:event_btnSomaActionPerformed
 
     private void btnMultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultActionPerformed
-        // TODO add your handling code here:
+        try{
+            Double valor1 = Double.parseDouble(Valor1.getText());
+            Double valor2 = Double.parseDouble(Valor2.getText());
+            
+            double result = multipilcacao(valor1, valor2);
+            System.out.println(result);
+            Resultado.setText(Double.toString(result));
+        
+        }catch(Exception e){
+           
+            Resultado.setText("Ops! Informe valores válidos");
+      
+    } 
     }//GEN-LAST:event_btnMultActionPerformed
 
     private void ResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResultadoActionPerformed
@@ -258,15 +266,49 @@ public class Princinpal extends javax.swing.JFrame {
     }//GEN-LAST:event_ResultadoActionPerformed
 
     private void btnSubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubActionPerformed
-        // TODO add your handling code here:
+         
+        try{
+            Double valor1 = Double.parseDouble(Valor1.getText());
+            Double valor2 = Double.parseDouble(Valor2.getText());
+            
+            double result = subtracao(valor1, valor2);
+            System.out.println(result);
+            Resultado.setText(Double.toString(result));
+        
+        }catch(Exception e){
+           
+            Resultado.setText("Ops! Informe valores válidos");
+      
     }//GEN-LAST:event_btnSubActionPerformed
 
     private void btnDivisaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDivisaoActionPerformed
-        // TODO add your handling code here:
+        
+        try{
+            Double valor1 = Double.parseDouble(Valor1.getText());
+            Double valor2 = Double.parseDouble(Valor2.getText());
+            
+            double result = divisao(valor1, valor2);
+            System.out.println(result);
+            Resultado.setText(Double.toString(result));
+        
+        }catch(Exception e){
+           
+            Resultado.setText("Ops! Informe valores válidos");
+      
+    } 
     }//GEN-LAST:event_btnDivisaoActionPerformed
     
     public static double somar(double valor1, double valor2){
         return valor1+valor2;
+    }
+    public static double subtracao(double valor1, double valor2){
+        return valor1-valor2;
+    }
+    public static double divisao(double valor1, double valor2){
+        return valor1/valor2;
+    }
+    public static double multipilcacao(double valor1, double valor2){
+        return valor1*valor2;
     }
     /**
      * @param args the command line arguments

@@ -295,9 +295,17 @@ public class Princinpal extends javax.swing.JFrame {
             Double valor1 = Double.parseDouble(Valor1.getText());
             Double valor2 = Double.parseDouble(Valor2.getText());
             
-            double result = divisao(valor1, valor2);
-            System.out.println(result);
-            Resultado.setText(Double.toString(result));
+            if(valor1 != 0 && valor2 != 0){
+                
+                double result = divisao(valor1, valor2);
+                System.out.println(result);
+                Resultado.setText(Double.toString(result));
+            
+            
+            }else{
+                Resultado.setText("Ops! Informe valores válidos");
+            }
+            
         
         }catch(Exception e){
            

@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Erlanio Freire
+ * @author marcelo
  */
 public class Principal extends javax.swing.JFrame {
 

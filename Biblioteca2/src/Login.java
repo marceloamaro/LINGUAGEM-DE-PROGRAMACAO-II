@@ -1,3 +1,4 @@
+
 import javax.swing.JOptionPane;
 
 /*
@@ -8,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Erlanio Freire
+ * @author Aluno
  */
 public class Login extends javax.swing.JFrame {
 
@@ -29,32 +30,40 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextEmail = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jTextEmail = new javax.swing.JTextField();
         jPassSenha = new javax.swing.JPasswordField();
         btnLogar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/UECE.png"))); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel2.setText("SENHA:");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel2.setText("Email:");
+        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel3.setText("E-MAIL:");
 
-        jTextEmail.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTextEmail.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jTextEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextEmailActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setText("Senha:");
-
-        jPassSenha.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jPassSenha.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jPassSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPassSenhaActionPerformed(evt);
+            }
+        });
 
         btnLogar.setBackground(new java.awt.Color(34, 16, 111));
-        btnLogar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnLogar.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         btnLogar.setForeground(new java.awt.Color(255, 255, 255));
         btnLogar.setText("LOGAR");
         btnLogar.addActionListener(new java.awt.event.ActionListener() {
@@ -63,48 +72,57 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/UECE.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(125, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(287, 287, 287)
-                        .addComponent(jLabel1))
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPassSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextEmail)
-                            .addComponent(jLabel3)
-                            .addComponent(jPassSenha)
-                            .addComponent(btnLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 683, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(75, Short.MAX_VALUE))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(178, 178, 178)
+                        .addComponent(btnLogar)
+                        .addGap(192, 192, 192)))
+                .addGap(100, 100, 100))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(197, 197, 197)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(76, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(51, 51, 51)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(jLabel3)
+                .addGap(48, 48, 48)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPassSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(btnLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jPassSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addComponent(btnLogar)
+                .addGap(90, 90, 90))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,24 +133,34 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextEmailActionPerformed
+
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
-        String emailRecebido = jTextEmail.getText();
-        String senhaRecebida = String.valueOf(jPassSenha.getPassword());
-
-        String emailCorreto = "erlanio.dev@gmail.com";
-        String senhaCorreta = "123";
-
-        if(emailRecebido.equals(emailCorreto) && senhaRecebida.equals(senhaCorreta)){
-          this.dispose();
-          Principal telaPrincipal = new Principal();
-          telaPrincipal.setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(null, "Ops! Email ou senha incorretos!");
-            jTextEmail.setText("");
-            jPassSenha.setText("");
-        }
-        
+            String emailRecebido = jTextEmail.getText();
+            String senhaRecebida = String.valueOf(jPassSenha.getPassword());
+            
+            String emailCorreto = "marcelo.com";
+            String senhaCorreta = "123";
+            
+            
+            if (emailRecebido.equals(emailCorreto) && senhaRecebida.equals(senhaCorreta)){
+                this.dispose();
+                Principal telaPrincipal = new Principal();
+                telaPrincipal.setVisible(true);
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Ops! Email ou senhas incorretos!");
+                
+                jTextEmail.setText("");
+                jPassSenha.setText("");
+            }
     }//GEN-LAST:event_btnLogarActionPerformed
+
+    private void jPassSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPassSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPassSenhaActionPerformed
 
     /**
      * @param args the command line arguments

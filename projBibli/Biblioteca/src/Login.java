@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Erlanio Freire
+ * author marcelo
  */
 public class Login extends javax.swing.JFrame {
 
@@ -119,7 +119,7 @@ public class Login extends javax.swing.JFrame {
         String emailRecebido = jTextEmail.getText();
         String senhaRecebida = String.valueOf(jPassSenha.getPassword());
 
-        String emailCorreto = "erlanio.dev@gmail.com";
+        String emailCorreto = "marcelo.com";
         String senhaCorreta = "123";
 
         if(emailRecebido.equals(emailCorreto) && senhaRecebida.equals(senhaCorreta)){

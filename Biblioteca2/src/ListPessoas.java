@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 /**
  *
- * @author Aluno
+ * @author marcelo
  */
 public class ListPessoas extends javax.swing.JFrame {
 
@@ -172,6 +172,9 @@ public class ListPessoas extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void popularTabelaPessoas() throws SQLException{
+        String nomeBuscado = jTextNome.getText();
+        String tipoPessoa = jComboTipoPessoa.getSelectedItem().toString();
+        
         DefaultTableModel model = (DefaultTableModel) tabelaPessoa.getModel();  
         
         Conexao con = new Conexao();        
@@ -179,6 +182,14 @@ public class ListPessoas extends javax.swing.JFrame {
         Statement st = con.conexao.createStatement();
         
         String sql = "SELECT * FROM pessoas";
+        
+        if(!nomeBuscado.isEmpty() && !TipoPessoa.equals("TIPO PESSOA")){
+            sql += " WHERE nome LIKE '"+ nomeBuscado + "%' AND serie = '"+tipoPessoa+"'";
+        }else if (!tipoPessoa.equals("TIPO PESSOA")){
+            sql += "WHERE serie = '"+tipoPessoa+"'";
+        }else if(!nomeBuscado.isEmpty()){
+            sql += " WHERE nome LIKE '"+ nomeBuscado + "%'";
+        }
         
         ResultSet resultado = st.executeQuery(sql);
         

@@ -6,7 +6,7 @@
 
 /**
  *
- * @author Aluno
+ * @author marcelo
  */
 public class Principal extends javax.swing.JFrame {
 

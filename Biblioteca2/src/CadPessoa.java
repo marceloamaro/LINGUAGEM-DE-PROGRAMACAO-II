@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
  */
 /**
  *
- * @author Aluno
+ * @author marcelo
  */
 public class CadPessoa extends javax.swing.JFrame {
 

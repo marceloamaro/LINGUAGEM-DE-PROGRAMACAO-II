@@ -168,6 +168,8 @@ public class ListPessoas extends javax.swing.JFrame {
                 
                 if(!st.execute(sqlDelete)){
                 JOptionPane.showMessageDialog(rootPane, "DELETADO COM SUCESSO");
+                popularTabelaPessoas();
+                        
                 }else{
                     JOptionPane.showMessageDialog(rootPane, "ERRO AO DELETAR");
                 }

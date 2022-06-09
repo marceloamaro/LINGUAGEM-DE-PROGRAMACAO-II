@@ -44,6 +44,11 @@ public class ListPessoas extends javax.swing.JFrame {
 
         jComboTipoPessoa.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jComboTipoPessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo pessoa", "1ª Série", "2ª Série", "3ª Série", "Professor", "Funcionário" }));
+        jComboTipoPessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboTipoPessoaActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(153, 0, 0));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -122,6 +127,14 @@ public class ListPessoas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jComboTipoPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboTipoPessoaActionPerformed
+        try {
+            popularTabelaPessoas();
+        } catch (SQLException ex) {
+            Logger.getLogger(ListPessoas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jComboTipoPessoaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -176,6 +189,7 @@ public class ListPessoas extends javax.swing.JFrame {
         String tipoPessoa = jComboTipoPessoa.getSelectedItem().toString();
         
         DefaultTableModel model = (DefaultTableModel) tabelaPessoa.getModel();  
+        model.setNumRows(0);
         
         Conexao con = new Conexao();        
         
@@ -183,10 +197,10 @@ public class ListPessoas extends javax.swing.JFrame {
         
         String sql = "SELECT * FROM pessoas";
         
-        if(!nomeBuscado.isEmpty() && !TipoPessoa.equals("TIPO PESSOA")){
+        if(!nomeBuscado.isEmpty() && !tipoPessoa.equals("Tipo pessoa")){
             sql += " WHERE nome LIKE '"+ nomeBuscado + "%' AND serie = '"+tipoPessoa+"'";
-        }else if (!tipoPessoa.equals("TIPO PESSOA")){
-            sql += "WHERE serie = '"+tipoPessoa+"'";
+        }else if (!tipoPessoa.equals("Tipo pessoa")){
+            sql += " WHERE serie = '"+tipoPessoa+"'";
         }else if(!nomeBuscado.isEmpty()){
             sql += " WHERE nome LIKE '"+ nomeBuscado + "%'";
         }

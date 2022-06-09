@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -35,12 +36,18 @@ public class ListPessoas extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jTextNome = new javax.swing.JTextField();
         jComboTipoPessoa = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        bntExcluir = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaPessoa = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTextNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextNomeKeyPressed(evt);
+            }
+        });
 
         jComboTipoPessoa.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jComboTipoPessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo pessoa", "1ª Série", "2ª Série", "3ª Série", "Professor", "Funcionário" }));
@@ -50,10 +57,15 @@ public class ListPessoas extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(153, 0, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Excluir");
+        bntExcluir.setBackground(new java.awt.Color(153, 0, 0));
+        bntExcluir.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        bntExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        bntExcluir.setText("Excluir");
+        bntExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntExcluirActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(34, 16, 111));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -87,7 +99,7 @@ public class ListPessoas extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bntExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -105,7 +117,7 @@ public class ListPessoas extends javax.swing.JFrame {
                     .addComponent(jTextNome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(bntExcluir)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,6 +146,41 @@ public class ListPessoas extends javax.swing.JFrame {
             Logger.getLogger(ListPessoas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jComboTipoPessoaActionPerformed
+
+    private void jTextNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNomeKeyPressed
+        try {
+            popularTabelaPessoas();
+        } catch (SQLException ex) {
+            Logger.getLogger(ListPessoas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextNomeKeyPressed
+
+    private void bntExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirActionPerformed
+        int linha = tabelaPessoa.getSelectedRow();
+        String id = tabelaPessoa.getValueAt(linha, 0).toString();
+        
+        int confirmacao = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente deletar?");
+        if(confirmacao ==0){
+            try {
+                Conexao con = new Conexao();
+                Statement st = con.conexao.createStatement();
+                String sqlDelete = "DELETE FROM pessoas WHERE id = "+id;
+                
+                if(!st.execute(sqlDelete)){
+                JOptionPane.showMessageDialog(rootPane, "DELETADO COM SUCESSO");
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "ERRO AO DELETAR");
+                }
+                
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(ListPessoas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+        
+        }
+    }//GEN-LAST:event_bntExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,7 +222,7 @@ public class ListPessoas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bntExcluir;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboTipoPessoa;
     private javax.swing.JPanel jPanel1;

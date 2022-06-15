@@ -1,6 +1,13 @@
 
+
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -41,6 +48,12 @@ public class CadPessoa extends javax.swing.JFrame {
         jPassSenha = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
         btnSalvarPessoa = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaPessoa = new javax.swing.JTable();
+        jTextNome1 = new javax.swing.JTextField();
+        jComboTipoPessoa = new javax.swing.JComboBox<>();
+        bntEditar = new javax.swing.JButton();
+        bntExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -86,6 +99,53 @@ public class CadPessoa extends javax.swing.JFrame {
             }
         });
 
+        tabelaPessoa.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "id", "nome", "email", "serie"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabelaPessoa);
+
+        jTextNome1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextNome1KeyPressed(evt);
+            }
+        });
+
+        jComboTipoPessoa.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jComboTipoPessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo pessoa", "1ª Série", "2ª Série", "3ª Série", "Professor", "Funcionário" }));
+        jComboTipoPessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboTipoPessoaActionPerformed(evt);
+            }
+        });
+
+        bntEditar.setBackground(new java.awt.Color(34, 16, 111));
+        bntEditar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        bntEditar.setForeground(new java.awt.Color(255, 255, 255));
+        bntEditar.setText("Editar");
+
+        bntExcluir.setBackground(new java.awt.Color(153, 0, 0));
+        bntExcluir.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        bntExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        bntExcluir.setText("Excluir");
+        bntExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -110,34 +170,67 @@ public class CadPessoa extends javax.swing.JFrame {
                             .addComponent(jComboSerie, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
                             .addComponent(jPassSenha))))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(bntExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bntEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboTipoPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPassSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSalvarPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jComboTipoPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bntEditar)
+                            .addComponent(bntExcluir))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jPassSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSalvarPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(179, 179, 179))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -148,7 +241,9 @@ public class CadPessoa extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 147, Short.MAX_VALUE))
         );
 
         pack();
@@ -207,6 +302,48 @@ public class CadPessoa extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSalvarPessoaActionPerformed
 
+    private void jTextNome1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNome1KeyPressed
+        try {
+            popularTabelaPessoas();
+        } catch (SQLException ex) {
+            Logger.getLogger(ListPessoas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextNome1KeyPressed
+
+    private void jComboTipoPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboTipoPessoaActionPerformed
+        try {
+            popularTabelaPessoas();
+        } catch (SQLException ex) {
+            Logger.getLogger(ListPessoas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jComboTipoPessoaActionPerformed
+
+    private void bntExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirActionPerformed
+        int linha = tabelaPessoa.getSelectedRow();
+        String id = tabelaPessoa.getValueAt(linha, 0).toString();
+
+        int confirmacao = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente deletar?");
+        if(confirmacao ==0){
+            try {
+                Conexao con = new Conexao();
+                Statement st = con.conexao.createStatement();
+                String sqlDelete = "DELETE FROM pessoas WHERE id = "+id;
+
+                if(!st.execute(sqlDelete)){
+                    JOptionPane.showMessageDialog(rootPane, "DELETADO COM SUCESSO");
+                    popularTabelaPessoas();
+
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "ERRO AO DELETAR");
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(ListPessoas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_bntExcluirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -240,12 +377,16 @@ public class CadPessoa extends javax.swing.JFrame {
                 new CadPessoa().setVisible(true);
             }
         });
+    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bntEditar;
+    private javax.swing.JButton bntExcluir;
     private javax.swing.JButton btnSalvarPessoa;
     private javax.swing.JComboBox<String> jComboAdm;
     private javax.swing.JComboBox<String> jComboSerie;
+    private javax.swing.JComboBox<String> jComboTipoPessoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -253,7 +394,43 @@ public class CadPessoa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPassSenha;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextEmail;
     private javax.swing.JTextField jTextNome;
+    private javax.swing.JTextField jTextNome1;
+    private javax.swing.JTable tabelaPessoa;
     // End of variables declaration//GEN-END:variables
 }
+    public void popularTabelaPessoas() throws SQLException{
+        String nomeBuscado = jTextNome.getText();
+        String tipoPessoa = jComboTipoPessoa.getSelectedItem().toString();
+        
+        DefaultTableModel model = (DefaultTableModel) tabelaPessoa.getModel();  
+        model.setNumRows(0);
+        
+        Conexao con = new Conexao();        
+        
+        Statement st = con.conexao.createStatement();
+        
+        String sql = "SELECT * FROM pessoas";
+        
+        if(!nomeBuscado.isEmpty() && !tipoPessoa.equals("Tipo pessoa")){
+            sql += " WHERE nome LIKE '"+ nomeBuscado + "%' AND serie = '"+tipoPessoa+"'";
+        }else if (!tipoPessoa.equals("Tipo pessoa")){
+            sql += " WHERE serie = '"+tipoPessoa+"'";
+        }else if(!nomeBuscado.isEmpty()){
+            sql += " WHERE nome LIKE '"+ nomeBuscado + "%'";
+        }
+        
+        ResultSet resultado = st.executeQuery(sql);
+        
+        while(resultado.next()){
+            model.addRow(new Object[]{
+                resultado.getString("id"),
+                resultado.getString("nome"),
+                resultado.getString("email"),
+                resultado.getString("serie"),
+            });
+        }
+        
+    }

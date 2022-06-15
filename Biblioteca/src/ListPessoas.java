@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,15 +6,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 /**
  *
- * @author marcelo
+ * @author Aluno
  */
 public class ListPessoas extends javax.swing.JFrame {
 
     /**
      * Creates new form ListPessoas
-     * @throws java.sql.SQLException
      */
     public ListPessoas() throws SQLException {
         initComponents();
@@ -35,18 +37,23 @@ public class ListPessoas extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextNome = new javax.swing.JTextField();
+        jTextNomePesquisa = new javax.swing.JTextField();
         jComboTipoPessoa = new javax.swing.JComboBox<>();
-        bntExcluir = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaPessoa = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextNome.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextNomePesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextNomePesquisaActionPerformed(evt);
+            }
+        });
+        jTextNomePesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextNomeKeyPressed(evt);
+                jTextNomePesquisaKeyPressed(evt);
             }
         });
 
@@ -58,13 +65,13 @@ public class ListPessoas extends javax.swing.JFrame {
             }
         });
 
-        bntExcluir.setBackground(new java.awt.Color(153, 0, 0));
-        bntExcluir.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        bntExcluir.setForeground(new java.awt.Color(255, 255, 255));
-        bntExcluir.setText("Excluir");
-        bntExcluir.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setBackground(new java.awt.Color(153, 0, 0));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Excluir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntExcluirActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -78,11 +85,11 @@ public class ListPessoas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id", "nome", "email", "serie"
+                "ID", "NOME", "EMAIL", "SÉRIE"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -100,11 +107,11 @@ public class ListPessoas extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(bntExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextNomePesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboTipoPessoa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -115,10 +122,10 @@ public class ListPessoas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboTipoPessoa, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(jTextNome))
+                    .addComponent(jTextNomePesquisa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bntExcluir)
+                    .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -148,42 +155,43 @@ public class ListPessoas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboTipoPessoaActionPerformed
 
-    private void jTextNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNomeKeyPressed
+    private void jTextNomePesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNomePesquisaKeyPressed
         try {
             popularTabelaPessoas();
         } catch (SQLException ex) {
             Logger.getLogger(ListPessoas.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jTextNomeKeyPressed
+    }//GEN-LAST:event_jTextNomePesquisaKeyPressed
 
-    private void bntExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int linha = tabelaPessoa.getSelectedRow();
         String id = tabelaPessoa.getValueAt(linha, 0).toString();
         
-        int confirmacao = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente deletar?");
-        if(confirmacao ==0){
+        int confirmacao = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente excluir a linha?");
+        
+        if(confirmacao == 0){
             try {
                 Conexao con = new Conexao();
                 Statement st = con.conexao.createStatement();
-                String sqlDelete = "DELETE FROM pessoas WHERE id = "+id;
+                String sqlDelete = "DELETE FROM pessoas WHERE id = " +id;
                 
-                if(!st.execute(sqlDelete)){
-                JOptionPane.showMessageDialog(rootPane, "DELETADO COM SUCESSO");
-                popularTabelaPessoas();
-                        
+                if(st.execute(sqlDelete)){
+                    JOptionPane.showMessageDialog(null, "Não foi possível excluir a linha!");
                 }else{
-                    JOptionPane.showMessageDialog(rootPane, "ERRO AO DELETAR");
-                }
-                
+                    JOptionPane.showMessageDialog(null, "Deletado com sucesso!");
+                    popularTabelaPessoas();
+                }                
                 
             } catch (SQLException ex) {
                 Logger.getLogger(ListPessoas.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
-        
         }
-    }//GEN-LAST:event_bntExcluirActionPerformed
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextNomePesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomePesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextNomePesquisaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,7 +222,6 @@ public class ListPessoas extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
             public void run() {
                 try {
                     new ListPessoas().setVisible(true);
@@ -226,18 +233,20 @@ public class ListPessoas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bntExcluir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboTipoPessoa;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextNome;
+    private javax.swing.JTextField jTextNomePesquisa;
     private javax.swing.JTable tabelaPessoa;
     // End of variables declaration//GEN-END:variables
 
     public void popularTabelaPessoas() throws SQLException{
-        String nomeBuscado = jTextNome.getText();
+        String nomeBuscado = jTextNomePesquisa.getText();
         String tipoPessoa = jComboTipoPessoa.getSelectedItem().toString();
+        
+        
         
         DefaultTableModel model = (DefaultTableModel) tabelaPessoa.getModel();  
         model.setNumRows(0);
@@ -249,11 +258,11 @@ public class ListPessoas extends javax.swing.JFrame {
         String sql = "SELECT * FROM pessoas";
         
         if(!nomeBuscado.isEmpty() && !tipoPessoa.equals("Tipo pessoa")){
-            sql += " WHERE nome LIKE '"+ nomeBuscado + "%' AND serie = '"+tipoPessoa+"'";
-        }else if (!tipoPessoa.equals("Tipo pessoa")){
+            sql += " WHERE nome LIKE '" + nomeBuscado+"%' AND serie = '"+tipoPessoa+"'";
+        }else if(!tipoPessoa.equals("Tipo pessoa")){
             sql += " WHERE serie = '"+tipoPessoa+"'";
         }else if(!nomeBuscado.isEmpty()){
-            sql += " WHERE nome LIKE '"+ nomeBuscado + "%'";
+            sql += " WHERE nome LIKE '" + nomeBuscado+"%'";
         }
         
         ResultSet resultado = st.executeQuery(sql);
@@ -270,3 +279,5 @@ public class ListPessoas extends javax.swing.JFrame {
     }
 
 }
+
+

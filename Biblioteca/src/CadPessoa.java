@@ -376,6 +376,38 @@ public class CadPessoa extends javax.swing.JFrame {
     private void bntEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntEditarActionPerformed
         int row= tabelaPessoa.getSelectedRow();
         String id = tabelaPessoa.getValueAt(row, 0).toString();
+        
+        String nome = jTextNome.getText();
+        String email = jTextEmail.getText();
+        
+        String serie = jComboSerie.getSelectedItem().toString();
+        
+        try {
+            Conexao con = new Conexao();
+            Statement st = con.conexao.createStatement();
+            String sql = "UPDATE pessoas SET "
+                + "nome='"+nome+"',"
+                + "email='"+email+"',"
+                + "serie='"+serie+"'"
+                +" WHERE id="+id;
+            
+            
+            if(st.executeUpdate(sql)==1){
+                JOptionPane.showMessageDialog(null, "Dados alterados");
+                popularTabelaPessoas();
+                bntEditar.setEnabled(false);
+                bntExcluir.setEnabled(false);
+                btnSalvarPessoa.setEnabled(true);
+                jPassSenha.setEnabled(true);
+                jComboAdm.setEnabled(true);
+            }else{
+                JOptionPane.showMessageDialog(null, "Erro ao alterar");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CadPessoa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_bntEditarActionPerformed
 
     /**

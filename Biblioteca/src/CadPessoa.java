@@ -49,8 +49,8 @@ public class CadPessoa extends javax.swing.JFrame {
         btnSalvarPessoa = new javax.swing.JButton();
         jTextNomePesquisa = new javax.swing.JTextField();
         jComboTipoPessoa = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        bntExcluir = new javax.swing.JButton();
+        bntEditar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaPessoa = new javax.swing.JTable();
 
@@ -117,20 +117,22 @@ public class CadPessoa extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(153, 0, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Excluir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bntExcluir.setBackground(new java.awt.Color(153, 0, 0));
+        bntExcluir.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        bntExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        bntExcluir.setText("Excluir");
+        bntExcluir.setEnabled(false);
+        bntExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bntExcluirActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(34, 16, 111));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Editar");
+        bntEditar.setBackground(new java.awt.Color(34, 16, 111));
+        bntEditar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        bntEditar.setForeground(new java.awt.Color(255, 255, 255));
+        bntEditar.setText("Editar");
+        bntEditar.setEnabled(false);
 
         tabelaPessoa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -146,6 +148,11 @@ public class CadPessoa extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tabelaPessoa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaPessoaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tabelaPessoa);
@@ -178,9 +185,9 @@ public class CadPessoa extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bntExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(bntEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jTextNomePesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -198,8 +205,8 @@ public class CadPessoa extends javax.swing.JFrame {
                             .addComponent(jTextNomePesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
+                            .addComponent(bntExcluir)
+                            .addComponent(bntEditar))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -315,7 +322,7 @@ public class CadPessoa extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboTipoPessoaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bntExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntExcluirActionPerformed
         int linha = tabelaPessoa.getSelectedRow();
         String id = tabelaPessoa.getValueAt(linha, 0).toString();
 
@@ -339,7 +346,27 @@ public class CadPessoa extends javax.swing.JFrame {
             }
         }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_bntExcluirActionPerformed
+
+    private void tabelaPessoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaPessoaMouseClicked
+        bntExcluir.setEnabled(true);
+        bntEditar.setEnabled(true);
+        btnSalvarPessoa.setEnabled(false);
+        jPassSenha.setEnabled(false);
+        jComboAdm.setEnabled(false);
+        
+        int row = tabelaPessoa.getSelectedRow();
+        
+        String id = tabelaPessoa.getValueAt(row, 0).toString();
+        String nome = tabelaPessoa.getValueAt(row, 1).toString();
+        String email = tabelaPessoa.getValueAt(row, 2).toString();
+        String serie = tabelaPessoa.getValueAt(row, 3).toString();
+        
+        jTextNome.setText(nome);
+        jTextEmail.setText(email);
+        jComboSerie.setSelectedItem(serie);
+        
+    }//GEN-LAST:event_tabelaPessoaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -381,9 +408,9 @@ public class CadPessoa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bntEditar;
+    private javax.swing.JButton bntExcluir;
     private javax.swing.JButton btnSalvarPessoa;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboAdm;
     private javax.swing.JComboBox<String> jComboSerie;
     private javax.swing.JComboBox<String> jComboTipoPessoa;

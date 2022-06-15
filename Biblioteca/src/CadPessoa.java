@@ -133,6 +133,11 @@ public class CadPessoa extends javax.swing.JFrame {
         bntEditar.setForeground(new java.awt.Color(255, 255, 255));
         bntEditar.setText("Editar");
         bntEditar.setEnabled(false);
+        bntEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntEditarActionPerformed(evt);
+            }
+        });
 
         tabelaPessoa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -367,6 +372,11 @@ public class CadPessoa extends javax.swing.JFrame {
         jComboSerie.setSelectedItem(serie);
         
     }//GEN-LAST:event_tabelaPessoaMouseClicked
+
+    private void bntEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntEditarActionPerformed
+        int row= tabelaPessoa.getSelectedRow();
+        String id = tabelaPessoa.getValueAt(row, 0).toString();
+    }//GEN-LAST:event_bntEditarActionPerformed
 
     /**
      * @param args the command line arguments

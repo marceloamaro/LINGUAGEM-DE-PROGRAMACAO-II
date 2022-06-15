@@ -505,4 +505,14 @@ public void popularTabelaPessoas() throws SQLException{
         
     }
 
+public void limparCampos(){
+    jTextNome.setText("");
+    jTextEmail.setText("");
+    jPassSenha.setText("");
+    jComboAdm.setSelectedIndex(0);
+    jComboSerie.setSelectedIndex(0);
+    jComboTipoPessoa.setSelectedIndex(0);
+   
+}
+
 }

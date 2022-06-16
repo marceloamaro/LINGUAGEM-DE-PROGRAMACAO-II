@@ -343,7 +343,13 @@ public class CadPessoa extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Não foi possível excluir a linha!");
                 }else{
                     JOptionPane.showMessageDialog(null, "Deletado com sucesso!");
+                    limparCampos();
                     popularTabelaPessoas();
+                    bntEditar.setEnabled(false);
+                    bntExcluir.setEnabled(false);
+                    btnSalvarPessoa.setEnabled(true);
+                    jPassSenha.setEnabled(true);
+                    jComboAdm.setEnabled(true);
                 }
 
             } catch (SQLException ex) {
@@ -394,12 +400,14 @@ public class CadPessoa extends javax.swing.JFrame {
             
             if(st.executeUpdate(sql)==1){
                 JOptionPane.showMessageDialog(null, "Dados alterados");
-                popularTabelaPessoas();
+                
                 bntEditar.setEnabled(false);
                 bntExcluir.setEnabled(false);
                 btnSalvarPessoa.setEnabled(true);
                 jPassSenha.setEnabled(true);
                 jComboAdm.setEnabled(true);
+                limparCampos();
+                popularTabelaPessoas();
             }else{
                 JOptionPane.showMessageDialog(null, "Erro ao alterar");
             }
@@ -509,9 +517,10 @@ public void limparCampos(){
     jTextNome.setText("");
     jTextEmail.setText("");
     jPassSenha.setText("");
+    jTextNomePesquisa.setText("");
     jComboAdm.setSelectedIndex(0);
     jComboSerie.setSelectedIndex(0);
-    jComboTipoPessoa.setSelectedIndex(0);
+    
    
 }
 

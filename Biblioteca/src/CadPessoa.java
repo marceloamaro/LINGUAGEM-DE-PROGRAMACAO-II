@@ -273,24 +273,24 @@ public class CadPessoa extends javax.swing.JFrame {
         if (adm.equals("Sim")) {
             if (senha.equals("")) {
                 JOptionPane.showMessageDialog(null, "OPS! Informe uma senha.");
-            return;
-            }            
+                return;
+            }
         }
 
         if (nome.equals("") || email.equals("")) {
             JOptionPane.showMessageDialog(null, "OPS! Preencha todos os campos corretamente.");
-        }else{
+        } else {
             try {
                 Conexao con = new Conexao();
-                
+
                 Statement st = con.conexao.createStatement();
-                
-                String sql = "INSERT INTO pessoas (nome, email, serie, senha, isAdmin) VALUES ('"+nome+"', '"+email+"', '"+serie+"', '"+senha+"', '"+adm+"')";
-                
-                if(st.execute(sql)){
+
+                String sql = "INSERT INTO pessoas (nome, email, serie, senha, isAdmin) VALUES ('" + nome + "', '" + email + "', '" + serie + "', '" + senha + "', '" + adm + "')";
+
+                if (st.execute(sql)) {
                     JOptionPane.showMessageDialog(null, "OPS! Tivemos um erro aqui.");
                     System.out.println("Teste erro");
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Dados inseridos com sucesso!");
                     System.out.println("Teste sucesso");
                     jTextEmail.setText("");
@@ -300,7 +300,7 @@ public class CadPessoa extends javax.swing.JFrame {
                     jComboSerie.setSelectedIndex(0);
                     popularTabelaPessoas();
                 }
-                
+
             } catch (Exception e) {
                 System.out.println("Erro no try");
             }
@@ -333,15 +333,15 @@ public class CadPessoa extends javax.swing.JFrame {
 
         int confirmacao = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente excluir a linha?");
 
-        if(confirmacao == 0){
+        if (confirmacao == 0) {
             try {
                 Conexao con = new Conexao();
                 Statement st = con.conexao.createStatement();
-                String sqlDelete = "DELETE FROM pessoas WHERE id = " +id;
+                String sqlDelete = "DELETE FROM pessoas WHERE id = " + id;
 
-                if(st.execute(sqlDelete)){
+                if (st.execute(sqlDelete)) {
                     JOptionPane.showMessageDialog(null, "Não foi possível excluir a linha!");
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Deletado com sucesso!");
                     limparCampos();
                     popularTabelaPessoas();
@@ -365,57 +365,59 @@ public class CadPessoa extends javax.swing.JFrame {
         btnSalvarPessoa.setEnabled(false);
         jPassSenha.setEnabled(false);
         jComboAdm.setEnabled(false);
-        
+
         int row = tabelaPessoa.getSelectedRow();
-        
+
         String id = tabelaPessoa.getValueAt(row, 0).toString();
         String nome = tabelaPessoa.getValueAt(row, 1).toString();
         String email = tabelaPessoa.getValueAt(row, 2).toString();
         String serie = tabelaPessoa.getValueAt(row, 3).toString();
-        
+
         jTextNome.setText(nome);
         jTextEmail.setText(email);
         jComboSerie.setSelectedItem(serie);
-        
+
     }//GEN-LAST:event_tabelaPessoaMouseClicked
 
     private void bntEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntEditarActionPerformed
-        int row= tabelaPessoa.getSelectedRow();
+        int row = tabelaPessoa.getSelectedRow();
         String id = tabelaPessoa.getValueAt(row, 0).toString();
-        
+
         String nome = jTextNome.getText();
         String email = jTextEmail.getText();
-        
+
         String serie = jComboSerie.getSelectedItem().toString();
-        
-        try {
-            Conexao con = new Conexao();
-            Statement st = con.conexao.createStatement();
-            String sql = "UPDATE pessoas SET "
-                + "nome='"+nome+"',"
-                + "email='"+email+"',"
-                + "serie='"+serie+"'"
-                +" WHERE id="+id;
-            
-            
-            if(st.executeUpdate(sql)==1){
-                JOptionPane.showMessageDialog(null, "Dados alterados");
-                
-                bntEditar.setEnabled(false);
-                bntExcluir.setEnabled(false);
-                btnSalvarPessoa.setEnabled(true);
-                jPassSenha.setEnabled(true);
-                jComboAdm.setEnabled(true);
-                limparCampos();
-                popularTabelaPessoas();
-            }else{
-                JOptionPane.showMessageDialog(null, "Erro ao alterar");
+
+        if (!nome.isEmpty() && !email.isEmpty()) {
+            try {
+                Conexao con = new Conexao();
+                Statement st = con.conexao.createStatement();
+                String sql = "UPDATE pessoas SET "
+                        + "nome='" + nome + "',"
+                        + "email='" + email + "',"
+                        + "serie='" + serie + "'"
+                        + " WHERE id=" + id;
+
+                if (st.executeUpdate(sql) == 1) {
+                    JOptionPane.showMessageDialog(null, "Dados alterados");
+
+                    bntEditar.setEnabled(false);
+                    bntExcluir.setEnabled(false);
+                    btnSalvarPessoa.setEnabled(true);
+                    jPassSenha.setEnabled(true);
+                    jComboAdm.setEnabled(true);
+                    limparCampos();
+                    popularTabelaPessoas();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Erro ao alterar");
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(CadPessoa.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(CadPessoa.class.getName()).log(Level.SEVERE, null, ex);
+        }else{
+            JOptionPane.showMessageDialog(null, "OPS! Preenchar os campos para continuar");
         }
-        
     }//GEN-LAST:event_bntEditarActionPerformed
 
     /**
@@ -477,51 +479,47 @@ public class CadPessoa extends javax.swing.JFrame {
     private javax.swing.JTextField jTextNomePesquisa;
     private javax.swing.JTable tabelaPessoa;
     // End of variables declaration//GEN-END:variables
-public void popularTabelaPessoas() throws SQLException{
+public void popularTabelaPessoas() throws SQLException {
         String nomeBuscado = jTextNomePesquisa.getText();
         String tipoPessoa = jComboTipoPessoa.getSelectedItem().toString();
-        
-        
-        
-        DefaultTableModel model = (DefaultTableModel) tabelaPessoa.getModel();  
+
+        DefaultTableModel model = (DefaultTableModel) tabelaPessoa.getModel();
         model.setNumRows(0);
-        
-        Conexao con = new Conexao();        
-        
+
+        Conexao con = new Conexao();
+
         Statement st = con.conexao.createStatement();
-        
+
         String sql = "SELECT * FROM pessoas";
-        
-        if(!nomeBuscado.isEmpty() && !tipoPessoa.equals("Tipo pessoa")){
-            sql += " WHERE nome LIKE '" + nomeBuscado+"%' AND serie = '"+tipoPessoa+"'";
-        }else if(!tipoPessoa.equals("Tipo pessoa")){
-            sql += " WHERE serie = '"+tipoPessoa+"'";
-        }else if(!nomeBuscado.isEmpty()){
-            sql += " WHERE nome LIKE '" + nomeBuscado+"%'";
+
+        if (!nomeBuscado.isEmpty() && !tipoPessoa.equals("Tipo pessoa")) {
+            sql += " WHERE nome LIKE '" + nomeBuscado + "%' AND serie = '" + tipoPessoa + "'";
+        } else if (!tipoPessoa.equals("Tipo pessoa")) {
+            sql += " WHERE serie = '" + tipoPessoa + "'";
+        } else if (!nomeBuscado.isEmpty()) {
+            sql += " WHERE nome LIKE '" + nomeBuscado + "%'";
         }
-        
+
         ResultSet resultado = st.executeQuery(sql);
-        
-        while(resultado.next()){
+
+        while (resultado.next()) {
             model.addRow(new Object[]{
                 resultado.getString("id"),
                 resultado.getString("nome"),
                 resultado.getString("email"),
-                resultado.getString("serie"),
-            });
+                resultado.getString("serie"),});
         }
-        
+
     }
 
-public void limparCampos(){
-    jTextNome.setText("");
-    jTextEmail.setText("");
-    jPassSenha.setText("");
-    jTextNomePesquisa.setText("");
-    jComboAdm.setSelectedIndex(0);
-    jComboSerie.setSelectedIndex(0);
-    
-   
-}
+    public void limparCampos() {
+        jTextNome.setText("");
+        jTextEmail.setText("");
+        jPassSenha.setText("");
+        jTextNomePesquisa.setText("");
+        jComboAdm.setSelectedIndex(0);
+        jComboSerie.setSelectedIndex(0);
+
+    }
 
 }

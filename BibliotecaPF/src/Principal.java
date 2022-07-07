@@ -41,14 +41,10 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -114,7 +110,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Cadastrar");
+        jMenuItem1.setText("Cadastrar/Listra");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -122,31 +118,12 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem1);
 
-        jMenuItem3.setText("Listar");
-        jMenu3.add(jMenuItem3);
-
         jMenuBar2.add(jMenu3);
 
         jMenu4.setText("Livros");
 
-        jMenuItem2.setText("Cadastrar");
+        jMenuItem2.setText("Cadastrar/Listra");
         jMenu4.add(jMenuItem2);
-
-        jMenuItem4.setText("Cadastrar");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem4);
-
-        jMenuItem5.setText("Buscar");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem5);
 
         jMenuBar2.add(jMenu4);
 
@@ -154,9 +131,6 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu7.setText("Novo");
         jMenu5.add(jMenu7);
-
-        jMenu6.setText("Pendentes");
-        jMenu5.add(jMenu6);
 
         jMenuBar2.add(jMenu5);
 
@@ -180,14 +154,6 @@ public class Principal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         this.dispose();
@@ -255,15 +221,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

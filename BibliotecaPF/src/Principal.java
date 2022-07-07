@@ -40,9 +40,9 @@ public class Principal extends javax.swing.JFrame {
         btnSair = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuPessoa = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuLivro = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
 
@@ -109,21 +109,31 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Cadastrar/Listra");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuPessoa.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuPessoa.setText("Cadastrar/Listra");
+        jMenuPessoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuPessoaActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem1);
+        jMenu3.add(jMenuPessoa);
 
         jMenuBar2.add(jMenu3);
 
         jMenu4.setText("Livros");
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
 
-        jMenuItem2.setText("Cadastrar/Listra");
-        jMenu4.add(jMenuItem2);
+        jMenuLivro.setText("Cadastrar/Listra");
+        jMenuLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuLivroActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuLivro);
 
         jMenuBar2.add(jMenu4);
 
@@ -166,7 +176,7 @@ public class Principal extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jMenu3ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPessoaActionPerformed
        CadPessoa cp;
         try {
             cp = new CadPessoa();
@@ -175,7 +185,21 @@ public class Principal extends javax.swing.JFrame {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
        
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMenuPessoaActionPerformed
+
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void jMenuLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuLivroActionPerformed
+         CadLivro cl;
+        try {
+            cl = new CadLivro();
+            cl.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuLivroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,8 +248,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuLivro;
+    private javax.swing.JMenuItem jMenuPessoa;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

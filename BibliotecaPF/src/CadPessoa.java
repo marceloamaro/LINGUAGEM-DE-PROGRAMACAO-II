@@ -39,12 +39,9 @@ public class CadPessoa extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextEmail = new javax.swing.JTextField();
+        jTextCurso = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jComboSerie = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        jComboAdm = new javax.swing.JComboBox<>();
-        jPassSenha = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
         btnSalvarPessoa = new javax.swing.JButton();
         jTextNomePesquisa = new javax.swing.JTextField();
@@ -53,6 +50,7 @@ public class CadPessoa extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaPessoa = new javax.swing.JTable();
+        jTextmMatricula = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -68,30 +66,20 @@ public class CadPessoa extends javax.swing.JFrame {
         jLabel1.setText("Nome:");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Email:");
+        jLabel2.setText("Curso:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Série:");
 
-        jComboSerie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ª Série", "2ª Série", "3ª Série", "Professor", "Funcionário" }));
+        jComboSerie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1°Ano", "2°Ano", "3°Ano", "Professor" }));
         jComboSerie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboSerieActionPerformed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("ADM:");
-
-        jComboAdm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não", "Sim" }));
-        jComboAdm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboAdmActionPerformed(evt);
-            }
-        });
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Senha:");
+        jLabel5.setText("Matricula:");
 
         btnSalvarPessoa.setBackground(new java.awt.Color(34, 16, 111));
         btnSalvarPessoa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -115,7 +103,7 @@ public class CadPessoa extends javax.swing.JFrame {
         });
 
         jComboTipoPessoa.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jComboTipoPessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo pessoa", "1ª Série", "2ª Série", "3ª Série", "Professor", "Funcionário" }));
+        jComboTipoPessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo pessoa", "1°Ano", "2°Ano", "3°Ano", "Professor" }));
         jComboTipoPessoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboTipoPessoaActionPerformed(evt);
@@ -150,11 +138,11 @@ public class CadPessoa extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "NOME", "EMAIL", "SÉRIE"
+                "ID", "NOME", "CURSO", "SÉRIE", "MATRICULA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -175,23 +163,22 @@ public class CadPessoa extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnSalvarPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboAdm, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboSerie, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextEmail)
-                            .addComponent(jPassSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel5)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSalvarPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextmMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
@@ -227,20 +214,16 @@ public class CadPessoa extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jPassSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel5)
+                            .addComponent(jTextmMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addComponent(btnSalvarPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -264,26 +247,15 @@ public class CadPessoa extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboSerieActionPerformed
 
-    private void jComboAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboAdmActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboAdmActionPerformed
-
     private void btnSalvarPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPessoaActionPerformed
         String nome = jTextNome.getText();
-        String email = jTextEmail.getText();
-        String senha = String.valueOf(jPassSenha.getPassword());
-
+        String curso = jTextCurso.getText();
         String serie = jComboSerie.getSelectedItem().toString();
-        String adm = jComboAdm.getSelectedItem().toString();
+        String matricula = jTextmMatricula.getText();
+        
 
-        if (adm.equals("Sim")) {
-            if (senha.equals("")) {
-                JOptionPane.showMessageDialog(null, "OPS! Informe uma senha.");
-                return;
-            }
-        }
 
-        if (nome.equals("") || email.equals("")) {
+        if (nome.equals("") || curso.equals("")|| serie.equals("")|| matricula.equals("")) {
             JOptionPane.showMessageDialog(null, "OPS! Preencha todos os campos corretamente.");
         } else {
             try {
@@ -291,7 +263,7 @@ public class CadPessoa extends javax.swing.JFrame {
 
                 Statement st = con.conexao.createStatement();
 
-                String sql = "INSERT INTO pessoas (nome, email, serie, senha, isAdmin) VALUES ('" + nome + "', '" + email + "', '" + serie + "', '" + senha + "', '" + adm + "')";
+                String sql = "INSERT INTO pessoas (nome, curso, serie, matricula) VALUES ('" + nome + "', '" + curso + "', '" + serie + "', '" + matricula + "')";
 
                 if (st.execute(sql)) {
                     JOptionPane.showMessageDialog(null, "OPS! Tivemos um erro aqui.");
@@ -348,8 +320,6 @@ public class CadPessoa extends javax.swing.JFrame {
                     limpar();
                     popularTabelaPessoas();
                     btnSalvarPessoa.setEnabled(true);
-                    jComboAdm.setEnabled(true);
-                    jPassSenha.setEnabled(true);
                     btnEditar.setEnabled(false);
                     btnExcluir.setEnabled(false);
                 }
@@ -365,25 +335,23 @@ public class CadPessoa extends javax.swing.JFrame {
         btnEditar.setEnabled(true);
         btnExcluir.setEnabled(true);
         btnSalvarPessoa.setEnabled(false);
-        jComboAdm.setEnabled(false);
-        jPassSenha.setEnabled(false);
-
+        
         int row = tabelaPessoa.getSelectedRow();
         String id = tabelaPessoa.getValueAt(row, 0).toString();
         String nome = tabelaPessoa.getValueAt(row, 1).toString();
-        String email = tabelaPessoa.getValueAt(row, 2).toString();
+        String curso = tabelaPessoa.getValueAt(row, 2).toString();
         String serie = tabelaPessoa.getValueAt(row, 3).toString();
+        String matricula = tabelaPessoa.getValueAt(row, 4).toString();
 
         jTextNome.setText(nome);
-        jTextEmail.setText(email);
+        jTextCurso.setText(curso);
         jComboSerie.setSelectedItem(serie);
+        jTextmMatricula.setText(matricula);
 
     }//GEN-LAST:event_tabelaPessoaMouseClicked
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         btnSalvarPessoa.setEnabled(true);
-        jComboAdm.setEnabled(true);
-        jPassSenha.setEnabled(true);
         btnEditar.setEnabled(false);
         btnExcluir.setEnabled(false);
         limpar();
@@ -393,10 +361,11 @@ public class CadPessoa extends javax.swing.JFrame {
         int row = tabelaPessoa.getSelectedRow();
         String id = tabelaPessoa.getValueAt(row, 0).toString();
         String nome = jTextNome.getText();
-        String email = jTextEmail.getText();
+        String curso = jTextCurso.getText();
         String serie = jComboSerie.getSelectedItem().toString();
+        String matricula = jTextmMatricula.getText();
 
-        if (nome.equals("") || email.equals("")) {
+        if (nome.equals("") || curso.equals("")|| serie.equals("")|| matricula.equals("")) {
             JOptionPane.showMessageDialog(null, "OPS! Preencha todos os campos corretamente.");
         } else {
             try {
@@ -405,8 +374,9 @@ public class CadPessoa extends javax.swing.JFrame {
 
                 String sql = "UPDATE pessoas SET "
                         + "nome='" + nome + "',"
-                        + "email='" + email + "',"
-                        + "serie='" + serie + "'"
+                        + "curso='" + curso + "',"
+                        + "serie='" + serie + "',"
+                        + "matricula='" + matricula + "'"
                         + " WHERE id = " + id;
                 System.out.println(sql);
 
@@ -453,6 +423,7 @@ public class CadPessoa extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 try {
                     new CadPessoa().setVisible(true);
@@ -467,20 +438,18 @@ public class CadPessoa extends javax.swing.JFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSalvarPessoa;
-    private javax.swing.JComboBox<String> jComboAdm;
     private javax.swing.JComboBox<String> jComboSerie;
     private javax.swing.JComboBox<String> jComboTipoPessoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPassSenha;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextEmail;
+    private javax.swing.JTextField jTextCurso;
     private javax.swing.JTextField jTextNome;
     private javax.swing.JTextField jTextNomePesquisa;
+    private javax.swing.JTextField jTextmMatricula;
     private javax.swing.JTable tabelaPessoa;
     // End of variables declaration//GEN-END:variables
 public void popularTabelaPessoas() throws SQLException {
@@ -510,17 +479,17 @@ public void popularTabelaPessoas() throws SQLException {
             model.addRow(new Object[]{
                 resultado.getString("id"),
                 resultado.getString("nome"),
-                resultado.getString("email"),
-                resultado.getString("serie"),});
+                resultado.getString("curso"),
+                resultado.getString("serie"),
+                resultado.getString("matricula"),});
         }
 
     }
 
     public void limpar() {
-        jTextEmail.setText("");
+        jTextCurso.setText("");
         jTextNome.setText("");
-        jPassSenha.setText("");
-        jComboAdm.setSelectedIndex(0);
+        jTextmMatricula.setText("");
         jComboSerie.setSelectedIndex(0);
         jTextNomePesquisa.setText("");
     }

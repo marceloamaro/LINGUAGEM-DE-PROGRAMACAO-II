@@ -537,11 +537,11 @@ public class CadLivro extends javax.swing.JFrame {
         String sql = "SELECT * FROM livro";
 
         if (!nomeLivro.isEmpty() && !tipoLivro.equals("Todos")) {
-            sql += " WHERE autorLIKE '" + nomeLivro + "%' AND genero = '" + tipoLivro + "'";
+            sql += " WHERE nome_livro LIKE '" + nomeLivro + "%' AND genero = '" + tipoLivro + "'";
         } else if (!tipoLivro.equals("Todos")) {
             sql += " WHERE genero = '" + tipoLivro + "'";
         } else if (!nomeLivro.isEmpty()) {
-            sql += " WHERE autorLIKE '" + nomeLivro + "%'";
+            sql += " WHERE nome_livro LIKE '" + nomeLivro + "%'";
         }
 
         ResultSet resultado = st.executeQuery(sql);

@@ -524,7 +524,7 @@ public class CadLivro extends javax.swing.JFrame {
     private javax.swing.JTable tabelaLivro;
     // End of variables declaration//GEN-END:variables
     public void popularTabelaLivros() throws SQLException {
-        String nomeBuscado = jTextNomePesquisa.getText();
+        String nomeLivro = jTextNomePesquisa.getText();
         String tipoLivro = jComboTipoLivro.getSelectedItem().toString();
 
         DefaultTableModel model = (DefaultTableModel) tabelaLivro.getModel();
@@ -536,12 +536,12 @@ public class CadLivro extends javax.swing.JFrame {
 
         String sql = "SELECT * FROM livro";
 
-        if (!nomeBuscado.isEmpty() && !tipoLivro.equals("Todos")) {
-            sql += " WHERE autorLIKE '" + nomeBuscado + "%' AND genero = '" + tipoLivro + "'";
+        if (!nomeLivro.isEmpty() && !tipoLivro.equals("Todos")) {
+            sql += " WHERE autorLIKE '" + nomeLivro + "%' AND genero = '" + tipoLivro + "'";
         } else if (!tipoLivro.equals("Todos")) {
             sql += " WHERE genero = '" + tipoLivro + "'";
-        } else if (!nomeBuscado.isEmpty()) {
-            sql += " WHERE autorLIKE '" + nomeBuscado + "%'";
+        } else if (!nomeLivro.isEmpty()) {
+            sql += " WHERE autorLIKE '" + nomeLivro + "%'";
         }
 
         ResultSet resultado = st.executeQuery(sql);

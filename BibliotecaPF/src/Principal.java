@@ -206,7 +206,13 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuLivroActionPerformed
 
     private void jMenuEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEmprestimoActionPerformed
-        // TODO add your handling code here:
+        CadEmp ce;
+        try {
+            ce = new CadEmp();
+            ce.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuEmprestimoActionPerformed
 
     private void jMenu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu6ActionPerformed

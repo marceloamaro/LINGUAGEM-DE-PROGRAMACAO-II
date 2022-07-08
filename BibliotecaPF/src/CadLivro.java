@@ -184,7 +184,7 @@ public class CadLivro extends javax.swing.JFrame {
         jLabel4.setText("Nome LIvro:");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel7.setText("Alunos / Professores");
+        jLabel7.setText("Livros");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

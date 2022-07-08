@@ -66,10 +66,13 @@
             <Property name="text" type="java.lang.String" value="Emprestimos"/>
           </Properties>
           <SubComponents>
-            <Menu class="javax.swing.JMenu" name="jMenu7">
+            <Menu class="javax.swing.JMenu" name="jMenuEmprestimo">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Novo"/>
+                <Property name="text" type="java.lang.String" value="Cadastrar/Listar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuEmprestimoActionPerformed"/>
+              </Events>
             </Menu>
           </SubComponents>
         </Menu>

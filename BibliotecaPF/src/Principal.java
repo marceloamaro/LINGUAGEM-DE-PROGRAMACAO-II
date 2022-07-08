@@ -44,7 +44,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuLivro = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
+        jMenuEmprestimo = new javax.swing.JMenu();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -139,8 +139,13 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu5.setText("Emprestimos");
 
-        jMenu7.setText("Novo");
-        jMenu5.add(jMenu7);
+        jMenuEmprestimo.setText("Cadastrar/Listar");
+        jMenuEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuEmprestimoActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuEmprestimo);
 
         jMenuBar2.add(jMenu5);
 
@@ -201,6 +206,16 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuLivroActionPerformed
 
+    private void jMenuEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEmprestimoActionPerformed
+        CadEmp ce;
+        try {
+            ce = new CadEmp();
+            ce.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_jMenuEmprestimoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -245,9 +260,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenu jMenuEmprestimo;
     private javax.swing.JMenuItem jMenuLivro;
     private javax.swing.JMenuItem jMenuPessoa;
     private javax.swing.JPanel jPanel1;

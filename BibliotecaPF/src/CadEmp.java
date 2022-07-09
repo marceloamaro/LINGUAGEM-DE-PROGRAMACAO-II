@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/**
+/**S
  *
  * @author Aluno
  */
@@ -31,7 +31,9 @@ public class CadEmp extends javax.swing.JFrame {
         popularTabelaEmprestimo();
         popularTabelaPessoas();
         popularTabelaLivros();
-        
+        btnExcluir.setEnabled(false);
+        btnAlterar.setEnabled(false);
+        btnEmprestar.setEnabled(true);
         
     }
 

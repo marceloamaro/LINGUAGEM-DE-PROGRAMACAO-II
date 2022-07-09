@@ -24,7 +24,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+          <Component id="jPanel1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -66,9 +66,9 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btnSalvarPessoa" min="-2" pref="323" max="-2" attributes="0"/>
-                              <Component id="jTextCurso" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                              <Component id="jTextCurso" alignment="0" max="32767" attributes="0"/>
                               <Component id="jComboSerie" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextmMatricula" alignment="0" min="-2" pref="182" max="-2" attributes="0"/>
+                              <Component id="jTextmMatricula" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>

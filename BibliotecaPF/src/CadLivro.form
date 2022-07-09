@@ -66,21 +66,26 @@
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jComboGenero" min="-2" pref="149" max="-2" attributes="0"/>
-                              <Component id="jTextEdicao" min="-2" pref="323" max="-2" attributes="0"/>
-                              <Component id="jTextAno" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
-                              <Component id="jTextAutor" alignment="0" min="-2" pref="323" max="-2" attributes="0"/>
-                              <Component id="jTextNomeL" alignment="0" min="-2" pref="323" max="-2" attributes="0"/>
-                              <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextEdicao" max="32767" attributes="0"/>
+                              <Component id="jTextAno" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextAutor" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextNomeL" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jComboGenero" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="btnSalvarLivro" min="-2" pref="323" max="-2" attributes="0"/>
-                              <Component id="jTextEstoque" min="-2" pref="217" max="-2" attributes="0"/>
+                              <Component id="jTextEstoque" pref="343" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>

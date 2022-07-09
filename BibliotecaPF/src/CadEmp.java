@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -30,8 +31,10 @@ public class CadEmp extends javax.swing.JFrame {
         popularTabelaEmprestimo();
         popularTabelaPessoas();
         popularTabelaLivros();
-        btnCadastrar.setEnabled(false);
-        btnDevolver.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        btnAlterar.setEnabled(false);
+        btnEmprestar.setEnabled(true);
+        
     }
 
     /**
@@ -62,16 +65,15 @@ public class CadEmp extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextData_emp = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextData_dev = new javax.swing.JTextField();
         btnExcluir = new javax.swing.JButton();
-        btnEditar = new javax.swing.JButton();
-        btnNovo = new javax.swing.JButton();
-        btnCadastrar = new javax.swing.JButton();
-        btnDevolver = new javax.swing.JButton();
+        btnEmprestar = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabelaEmprestimo = new javax.swing.JTable();
         jTextNomePesquisa2 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jComboDtdev = new javax.swing.JComboBox<>();
+        jComboDv = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -186,7 +188,7 @@ public class CadEmp extends javax.swing.JFrame {
 
         jLabel4.setText("Data do emprestimo:(d/m/a)");
 
-        jLabel5.setText("Data de Devolução: (d/m/a)");
+        jLabel5.setText("Data de Devolução: ");
 
         btnExcluir.setText("Excluir");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -195,35 +197,19 @@ public class CadEmp extends javax.swing.JFrame {
             }
         });
 
-        btnEditar.setText("Editar");
-        btnEditar.setPreferredSize(new java.awt.Dimension(80, 40));
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+        btnEmprestar.setText("Emprestar");
+        btnEmprestar.setPreferredSize(new java.awt.Dimension(80, 40));
+        btnEmprestar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
+                btnEmprestarActionPerformed(evt);
             }
         });
 
-        btnNovo.setText("Novo");
-        btnNovo.setPreferredSize(new java.awt.Dimension(80, 40));
-        btnNovo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovoActionPerformed(evt);
-            }
-        });
-
-        btnCadastrar.setText("Emprestar");
-        btnCadastrar.setPreferredSize(new java.awt.Dimension(80, 40));
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarActionPerformed(evt);
-            }
-        });
-
-        btnDevolver.setText("Devolver");
-        btnDevolver.setPreferredSize(new java.awt.Dimension(80, 40));
-        btnDevolver.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAlterar.setText("Alterar");
+        btnAlterar.setPreferredSize(new java.awt.Dimension(80, 40));
+        btnAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnDevolverMouseClicked(evt);
+                btnAlterarMouseClicked(evt);
             }
         });
 
@@ -237,7 +223,7 @@ public class CadEmp extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false
+                false, false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -262,7 +248,20 @@ public class CadEmp extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Pesquisa ID do Emprestimo: ");
+        jComboDtdev.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "dias", "semanal", "quizenal", "mensal" }));
+        jComboDtdev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboDtdevActionPerformed(evt);
+            }
+        });
+
+        jComboDv.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jComboDv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Geral", "dias", "semanal", "quizenal", "mensal" }));
+        jComboDv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboDvActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -276,14 +275,14 @@ public class CadEmp extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(jTextNomePesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboTipoPessoa, 0, 183, Short.MAX_VALUE))
+                                .addComponent(jComboTipoPessoa, 0, 185, Short.MAX_VALUE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTextNomePesquisa1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboTipoLivro, 0, 155, Short.MAX_VALUE))
+                                .addComponent(jComboTipoLivro, 0, 157, Short.MAX_VALUE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -299,46 +298,47 @@ public class CadEmp extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(1, 1, 1)
                                 .addComponent(jTextId_livro, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
+                                .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextData_emp, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                                    .addComponent(jTextData_dev)))
+                                .addComponent(jTextData_emp, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextId, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jTextId, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboDtdev, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextNomePesquisa2, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jTextNomePesquisa2, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jComboDv, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboTipoPessoa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboTipoLivro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -355,6 +355,19 @@ public class CadEmp extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 19, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextNomePesquisa2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboDv, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jTextId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -369,24 +382,13 @@ public class CadEmp extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextData_dev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboDtdev, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 12, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextNomePesquisa2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                            .addComponent(btnEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -429,21 +431,13 @@ public class CadEmp extends javax.swing.JFrame {
 
     private void jComboTipoPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboTipoPessoaActionPerformed
         
-        try {
-            popularTabelaEmprestimo();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         try {
             popularTabelaPessoas();
         } catch (SQLException ex) {
             Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
-            popularTabelaLivros();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
       
     }//GEN-LAST:event_jComboTipoPessoaActionPerformed
 
@@ -457,6 +451,7 @@ public class CadEmp extends javax.swing.JFrame {
         String serie = tabelaPessoa.getValueAt(row, 3).toString();
         String matricula = tabelaPessoa.getValueAt(row, 4).toString();
 
+        jTextId.setText(id);
         
 
     }//GEN-LAST:event_tabelaPessoaMouseClicked
@@ -478,6 +473,8 @@ public class CadEmp extends javax.swing.JFrame {
         String genero = tabelaLivro.getValueAt(row, 4).toString();
         String edicao = tabelaLivro.getValueAt(row, 5).toString();
         String estoque = tabelaLivro.getValueAt(row, 6).toString();
+        
+        jTextId_livro.setText(id_livro);
 
         
     }//GEN-LAST:event_tabelaLivroMouseClicked
@@ -509,21 +506,13 @@ public class CadEmp extends javax.swing.JFrame {
 
     private void jComboTipoLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboTipoLivroActionPerformed
 
-        try {
-            popularTabelaEmprestimo();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         try {
             popularTabelaLivros();
         } catch (SQLException ex) {
             Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
-            popularTabelaPessoas();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         
 
     }//GEN-LAST:event_jComboTipoLivroActionPerformed
@@ -534,34 +523,50 @@ public class CadEmp extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+    private void btnEmprestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmprestarActionPerformed
+        String id= jTextId.getText();
+        String id_livro= jTextId_livro.getText();
+        String data_emp =  jTextData_emp.getText();
+        String data_dev = jComboDtdev.getSelectedItem().toString();
         
-    }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNovoActionPerformed
+        if (id.equals("") || id_livro.equals("")|| data_emp.equals("")|| data_dev.equals("")) {
+            JOptionPane.showMessageDialog(null, "OPS! Preencha todos os campos corretamente.");
+        } else {
+            try {
+                Conexao con = new Conexao();
 
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        btnCadastrar.setEnabled(true);
-        btnDevolver.setEnabled(true);
-    }//GEN-LAST:event_btnCadastrarActionPerformed
+                Statement st = con.conexao.createStatement();
 
-    private void btnDevolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDevolverMouseClicked
+                String sql = "INSERT INTO emprestimo (id, id_livro, data_emp,  data_dev) VALUES ('" + id+ "', '" + id_livro+ "', '" + data_emp + "', '" + data_dev + "')";
+
+                if (st.execute(sql)) {
+                    JOptionPane.showMessageDialog(null, "OPS! Tivemos um erro aqui.");
+                    System.out.println("Teste erro");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Dados inseridos com sucesso!");
+                    System.out.println("Teste sucesso");
+                    Emp_limpar();
+                    popularTabelaEmprestimo();
+                }
+
+            } catch (Exception e) {
+                System.out.println("Erro no try");
+            }
+        }
+        
+    }//GEN-LAST:event_btnEmprestarActionPerformed
+
+    private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
        
-    }//GEN-LAST:event_btnDevolverMouseClicked
+    }//GEN-LAST:event_btnAlterarMouseClicked
 
     private void jTextIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextIdActionPerformed
 
     private void tabelaEmprestimoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaEmprestimoMouseClicked
-        btnEditar.setEnabled(true);
-        btnExcluir.setEnabled(true);
-        btnNovo.setEnabled(true);
-        btnCadastrar.setEnabled(false);
-        btnDevolver.setEnabled(false);
-
+       
         int row = tabelaEmprestimo.getSelectedRow();
         String id = tabelaEmprestimo.getValueAt(row, 0).toString();
         String id_livro= tabelaEmprestimo.getValueAt(row, 1).toString();
@@ -573,7 +578,7 @@ public class CadEmp extends javax.swing.JFrame {
         jTextId.setText(id);
         jTextId_livro.setText(id_livro);
         jTextData_emp.setText(data_emp);
-        jTextData_dev.setText(data_dev);
+        jComboDtdev.setSelectedItem(data_dev);
     }//GEN-LAST:event_tabelaEmprestimoMouseClicked
 
     private void jTextNomePesquisa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomePesquisa2ActionPerformed
@@ -583,6 +588,18 @@ public class CadEmp extends javax.swing.JFrame {
     private void jTextNomePesquisa2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNomePesquisa2KeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextNomePesquisa2KeyPressed
+
+    private void jComboDtdevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboDtdevActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboDtdevActionPerformed
+
+    private void jComboDvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboDvActionPerformed
+        try {
+            popularTabelaEmprestimo();        // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jComboDvActionPerformed
 
     /**
      * @param args the command line arguments
@@ -625,11 +642,11 @@ public class CadEmp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnDevolver;
-    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnAlterar;
+    private javax.swing.JButton btnEmprestar;
     private javax.swing.JButton btnExcluir;
-    private javax.swing.JButton btnNovo;
+    private javax.swing.JComboBox<String> jComboDtdev;
+    private javax.swing.JComboBox<String> jComboDv;
     private javax.swing.JComboBox<String> jComboTipoLivro;
     private javax.swing.JComboBox<String> jComboTipoPessoa;
     private javax.swing.JLabel jLabel10;
@@ -644,7 +661,6 @@ public class CadEmp extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextData_dev;
     private javax.swing.JTextField jTextData_emp;
     private javax.swing.JTextField jTextId;
     private javax.swing.JTextField jTextId_livro;
@@ -726,33 +742,16 @@ public void popularTabelaLivros() throws SQLException {
     }
 
    public void popularTabelaEmprestimo() throws SQLException {
-        String idLivro = jTextNomePesquisa2.getText();
+      
+
+    }
         
-
-        DefaultTableModel model = (DefaultTableModel) tabelaEmprestimo.getModel();
-        model.setNumRows(0);
-
-        Conexao con = new Conexao();
-
-        Statement st = con.conexao.createStatement();
-
-        String sql = "SELECT * FROM emprestimo";
-
-        if (!idLivro.isEmpty()) {
-            sql += " WHERE id_emprestimo LIKE '" + idLivro + "%'";
-        }
-
-        ResultSet resultado = st.executeQuery(sql);
-
-        while (resultado.next()) {
-            model.addRow(new Object[]{
-                resultado.getString("id_emprestimo"),
-                resultado.getString("id"),
-                resultado.getString("id_livro"),
-                resultado.getString("ano"),
-                resultado.getString("data_emp"),
-                resultado.getString("data_dev"),});
-        }
-
+    public void Emp_limpar() {
+        jTextId.setText("");
+        jTextId_livro.setText("");
+        jTextData_emp.setText("");
+        jComboDtdev.setSelectedIndex(0);
+        jTextNomePesquisa2.setText("");
+        
     }
 }

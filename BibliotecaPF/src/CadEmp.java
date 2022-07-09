@@ -465,7 +465,11 @@ public class CadEmp extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboDtdevActionPerformed
 
     private void jTextNomePesquisaEmpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNomePesquisaEmpKeyPressed
-        // TODO add your handling code here:
+        try {
+            popularTabelaEmprestimo();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jTextNomePesquisaEmpKeyPressed
 
     private void jTextNomePesquisaEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomePesquisaEmpActionPerformed

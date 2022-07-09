@@ -848,7 +848,7 @@ public void popularTabelaEmprestimo() throws SQLException {
        String nomeEmp = jTextNomePesquisaEmp.getText();
         String tipoEmp = jComboDv.getSelectedItem().toString();
 
-        DefaultTableModel model = (DefaultTableModel) tabelaLivro.getModel();
+        DefaultTableModel model = (DefaultTableModel) tabelaEmprestimo.getModel();
         model.setNumRows(0);
 
         Conexao con = new Conexao();
@@ -859,10 +859,13 @@ public void popularTabelaEmprestimo() throws SQLException {
 
         if (!nomeEmp.isEmpty() && !tipoEmp.equals("Geral")) {
             sql += " WHERE nome LIKE '" + nomeEmp + "%' AND data_dev = '" + tipoEmp + "'";
+            
         } else if (!tipoEmp.equals("Geral")) {
             sql += " WHERE data_dev = '" + tipoEmp + "'";
+            
         } else if (!nomeEmp.isEmpty()) {
             sql += " WHERE nome LIKE '" + nomeEmp + "%'";
+            
         }
 
         ResultSet resultado = st.executeQuery(sql);
@@ -873,8 +876,9 @@ public void popularTabelaEmprestimo() throws SQLException {
                 resultado.getString("id"),
                 resultado.getString("id_livro"),
                 resultado.getString("nome_livro"),
-                resultado.getString("dat_emp"),
-                resultado.getString("dat_dev"),});
+                resultado.getString("data_emp"),
+                resultado.getString("data_dev"),});
+            System.out.println("while");
         }
 
     }

@@ -31,9 +31,7 @@ public class CadEmp extends javax.swing.JFrame {
         popularTabelaEmprestimo();
         popularTabelaPessoas();
         popularTabelaLivros();
-        btnExcluir.setEnabled(false);
-        btnAlterar.setEnabled(false);
-        btnEmprestar.setEnabled(true);
+        
         
     }
 
@@ -53,7 +51,7 @@ public class CadEmp extends javax.swing.JFrame {
         tabelaPessoa = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaLivro = new javax.swing.JTable();
-        jTextNomePesquisa1 = new javax.swing.JTextField();
+        jTextNomePesquisaLivro = new javax.swing.JTextField();
         jComboTipoLivro = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -70,10 +68,14 @@ public class CadEmp extends javax.swing.JFrame {
         btnAlterar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabelaEmprestimo = new javax.swing.JTable();
-        jTextNomePesquisa2 = new javax.swing.JTextField();
+        jTextNomePesquisaEmp = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jComboDtdev = new javax.swing.JComboBox<>();
         jComboDv = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jTextNome = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jTextNomeL = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -152,14 +154,14 @@ public class CadEmp extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tabelaLivro);
 
-        jTextNomePesquisa1.addActionListener(new java.awt.event.ActionListener() {
+        jTextNomePesquisaLivro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextNomePesquisa1ActionPerformed(evt);
+                jTextNomePesquisaLivroActionPerformed(evt);
             }
         });
-        jTextNomePesquisa1.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextNomePesquisaLivro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextNomePesquisa1KeyPressed(evt);
+                jTextNomePesquisaLivroKeyPressed(evt);
             }
         });
 
@@ -174,8 +176,10 @@ public class CadEmp extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel7.setText("Emprestimo");
 
+        jLabel8.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel8.setText("ATENÇÃO! Preencha os campos \"cliente\" e \"livro\" clicando no registro,encontrado na área de pesquisa.");
 
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel2.setText("ID do cliente: ");
 
         jTextId.addActionListener(new java.awt.event.ActionListener() {
@@ -184,10 +188,13 @@ public class CadEmp extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel3.setText("ID do livro: ");
 
+        jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel4.setText("Data do emprestimo:(d/m/a)");
 
+        jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel5.setText("Data de Devolução: ");
 
         btnExcluir.setText("Excluir");
@@ -212,6 +219,11 @@ public class CadEmp extends javax.swing.JFrame {
                 btnAlterarMouseClicked(evt);
             }
         });
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         tabelaEmprestimo.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         tabelaEmprestimo.setModel(new javax.swing.table.DefaultTableModel(
@@ -219,11 +231,11 @@ public class CadEmp extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID_EMPRESTIMO", "ID", "ID_LIVRO", "DATA_EMP", "DATA_DEV"
+                "ID_EMPRESTIMO", "ID", "NOME", "ID_LIVRO", "NOME_LIVRO", "DATA_EMP", "DATA_DEV"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true
+                false, false, false, false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -237,18 +249,18 @@ public class CadEmp extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tabelaEmprestimo);
 
-        jTextNomePesquisa2.addActionListener(new java.awt.event.ActionListener() {
+        jTextNomePesquisaEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextNomePesquisa2ActionPerformed(evt);
+                jTextNomePesquisaEmpActionPerformed(evt);
             }
         });
-        jTextNomePesquisa2.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextNomePesquisaEmp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextNomePesquisa2KeyPressed(evt);
+                jTextNomePesquisaEmpKeyPressed(evt);
             }
         });
 
-        jComboDtdev.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "dias", "semanal", "quizenal", "mensal" }));
+        jComboDtdev.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dois dias", "Uma semanal", "Duas semana", "Um mes" }));
         jComboDtdev.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboDtdevActionPerformed(evt);
@@ -256,10 +268,22 @@ public class CadEmp extends javax.swing.JFrame {
         });
 
         jComboDv.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jComboDv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Geral", "dias", "semanal", "quizenal", "mensal" }));
+        jComboDv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Geral", "Dois dias", "Uma semanal", "Duas semana", "Um mes" }));
         jComboDv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboDvActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel1.setText("Nome:");
+
+        jLabel9.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel9.setText("Nome LIvro:");
+
+        jTextNomeL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextNomeLActionPerformed(evt);
             }
         });
 
@@ -275,14 +299,14 @@ public class CadEmp extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(jTextNomePesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboTipoPessoa, 0, 185, Short.MAX_VALUE))
+                                .addComponent(jComboTipoPessoa, 0, 191, Short.MAX_VALUE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextNomePesquisa1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextNomePesquisaLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboTipoLivro, 0, 157, Short.MAX_VALUE))
+                                .addComponent(jComboTipoLivro, 0, 163, Short.MAX_VALUE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -298,51 +322,57 @@ public class CadEmp extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextId, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(1, 1, 1)
-                                .addComponent(jTextId_livro, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboDtdev, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextData_emp, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextId, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextId_livro, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboDtdev, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextNomeL, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel6)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTextNomePesquisa2, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboDv, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextNomePesquisaEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboDv, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboTipoPessoa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboTipoLivro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextNomePesquisa1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextNomePesquisaLivro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextNomePesquisa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -355,40 +385,46 @@ public class CadEmp extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 19, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextNomePesquisa2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboDv, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(4, 4, 4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboDv, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextNomePesquisaEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jTextId_livro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jTextNomeL, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jTextData_emp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jComboDtdev, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jComboDtdev, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -399,138 +435,114 @@ public class CadEmp extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextNomePesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomePesquisaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextNomePesquisaActionPerformed
-
-    private void jTextNomePesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNomePesquisaKeyPressed
-        try {
-            popularTabelaEmprestimo();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        try {
-            popularTabelaPessoas();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            popularTabelaLivros();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jTextNomePesquisaKeyPressed
-
-    private void jComboTipoPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboTipoPessoaActionPerformed
-        
-        
-        try {
-            popularTabelaPessoas();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-      
-    }//GEN-LAST:event_jComboTipoPessoaActionPerformed
-
-    private void tabelaPessoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaPessoaMouseClicked
-        
-        
-        int row = tabelaPessoa.getSelectedRow();
-        String id = tabelaPessoa.getValueAt(row, 0).toString();
-        String nome = tabelaPessoa.getValueAt(row, 1).toString();
-        String curso = tabelaPessoa.getValueAt(row, 2).toString();
-        String serie = tabelaPessoa.getValueAt(row, 3).toString();
-        String matricula = tabelaPessoa.getValueAt(row, 4).toString();
-
-        jTextId.setText(id);
-        
-
-    }//GEN-LAST:event_tabelaPessoaMouseClicked
-
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        
-        
+        btnExcluir.setEnabled(false);
+        btnAlterar.setEnabled(false);
+        btnEmprestar.setEnabled(true);
     }//GEN-LAST:event_jPanel1MouseClicked
 
-     
-    private void tabelaLivroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaLivroMouseClicked
+    private void jComboDvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboDvActionPerformed
         
+        try {
+            popularTabelaEmprestimo();        // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }//GEN-LAST:event_jComboDvActionPerformed
 
-        int row = tabelaLivro.getSelectedRow();
-        String id_livro = tabelaLivro.getValueAt(row, 0).toString();
-        String nome_livro= tabelaLivro.getValueAt(row, 1).toString();
-        String autor= tabelaLivro.getValueAt(row, 2).toString();
-        String ano = tabelaLivro.getValueAt(row, 3).toString();
-        String genero = tabelaLivro.getValueAt(row, 4).toString();
-        String edicao = tabelaLivro.getValueAt(row, 5).toString();
-        String estoque = tabelaLivro.getValueAt(row, 6).toString();
-        
-        jTextId_livro.setText(id_livro);
-
-        
-    }//GEN-LAST:event_tabelaLivroMouseClicked
-
-    private void jTextNomePesquisa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomePesquisa1ActionPerformed
+    private void jComboDtdevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboDtdevActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextNomePesquisa1ActionPerformed
+    }//GEN-LAST:event_jComboDtdevActionPerformed
 
-    private void jTextNomePesquisa1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNomePesquisa1KeyPressed
+    private void jTextNomePesquisaEmpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNomePesquisaEmpKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextNomePesquisaEmpKeyPressed
 
-        try {
-            popularTabelaEmprestimo();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
+    private void jTextNomePesquisaEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomePesquisaEmpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextNomePesquisaEmpActionPerformed
+
+    private void tabelaEmprestimoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaEmprestimoMouseClicked
+        btnExcluir.setEnabled(true);
+        btnAlterar.setEnabled(true);
+        btnEmprestar.setEnabled(false);
+        
+        int row = tabelaEmprestimo.getSelectedRow();
+        String id_emprestimo = tabelaEmprestimo.getValueAt(row, 0).toString();
+        String id = tabelaEmprestimo.getValueAt(row, 1).toString();
+        String nome = tabelaEmprestimo.getValueAt(row, 2).toString();
+        String id_livro= tabelaEmprestimo.getValueAt(row, 3).toString();
+        String nome_livro = tabelaEmprestimo.getValueAt(row, 4).toString();
+        String data_emp= tabelaEmprestimo.getValueAt(row, 5).toString();
+        String data_dev = tabelaEmprestimo.getValueAt(row, 6).toString();
+
+        jTextId.setText(id);
+        jTextNome.setText(nome);
+        jTextId_livro.setText(id_livro);
+        jTextNomeL.setText(nome_livro);
+        jTextData_emp.setText(data_emp);
+        jComboDtdev.setSelectedItem(data_dev);
+    }//GEN-LAST:event_tabelaEmprestimoMouseClicked
+
+    private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
+        int row = tabelaLivro.getSelectedRow();
+        String id_emprestimo = tabelaEmprestimo.getValueAt(row, 0).toString();
+        String id= jTextId.getText();
+        String nome= jTextNome.getText();
+        String id_livro= jTextId_livro.getText();
+        String nome_livro= jTextNomeL.getText();
+        String data_emp =  jTextData_emp.getText();
+        String data_dev = jComboDtdev.getSelectedItem().toString();
+
+        if (id.equals("") || nome.equals("") || id_livro.equals("")|| nome_livro.equals("") || data_emp.equals("")|| data_dev.equals("")) {
+            JOptionPane.showMessageDialog(null, "OPS! Preencha todos os campos corretamente.");
+        } else {
+            try {
+                Conexao con = new Conexao();
+                Statement st = con.conexao.createStatement();
+
+                String sql = "UPDATE emprestimo SET "
+                + "id='" + id + "',"
+                + "nome='" + nome + "',"
+                + "id_livro='" + id_livro+ "',"
+                + "nome_livro='" + nome_livro + "',"
+                + "data_emp='" + data_emp + "',"
+                + "data_dev='" + data_dev + "'"
+                + " WHERE id_emprestimo = " + id_emprestimo;
+                System.out.println(sql);
+
+                if (st.executeUpdate(sql) == 1) {
+                    JOptionPane.showMessageDialog(null, "Dados alterados com sucesso!");
+                    popularTabelaEmprestimo();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Erro ao alterar");
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        try {
-            popularTabelaLivros();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            popularTabelaPessoas();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-
-    }//GEN-LAST:event_jTextNomePesquisa1KeyPressed
-
-    private void jComboTipoLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboTipoLivroActionPerformed
-
-        
-        try {
-            popularTabelaLivros();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-
-    }//GEN-LAST:event_jComboTipoLivroActionPerformed
-
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        
-        
-        
-    }//GEN-LAST:event_btnExcluirActionPerformed
+    }//GEN-LAST:event_btnAlterarMouseClicked
 
     private void btnEmprestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmprestarActionPerformed
         String id= jTextId.getText();
+        String nome= jTextNome.getText();
         String id_livro= jTextId_livro.getText();
+        String nome_livro= jTextNomeL.getText();
         String data_emp =  jTextData_emp.getText();
         String data_dev = jComboDtdev.getSelectedItem().toString();
-        
 
-        if (id.equals("") || id_livro.equals("")|| data_emp.equals("")|| data_dev.equals("")) {
+        if (id.equals("") || nome.equals("") || id_livro.equals("")|| nome_livro.equals("") || data_emp.equals("")|| data_dev.equals("")) {
             JOptionPane.showMessageDialog(null, "OPS! Preencha todos os campos corretamente.");
         } else {
             try {
@@ -538,7 +550,7 @@ public class CadEmp extends javax.swing.JFrame {
 
                 Statement st = con.conexao.createStatement();
 
-                String sql = "INSERT INTO emprestimo (id, id_livro, data_emp,  data_dev) VALUES ('" + id+ "', '" + id_livro+ "', '" + data_emp + "', '" + data_dev + "')";
+                String sql = "INSERT INTO emprestimo (id, nome, id_livro, nome_livro, data_emp, data_dev) VALUES ('" + id+ "', '" + nome+ "', '" + id_livro+ "', '" + nome_livro+ "', '" + data_emp + "', '" + data_dev + "')";
 
                 if (st.execute(sql)) {
                     JOptionPane.showMessageDialog(null, "OPS! Tivemos um erro aqui.");
@@ -554,53 +566,140 @@ public class CadEmp extends javax.swing.JFrame {
                 System.out.println("Erro no try");
             }
         }
-        
+
     }//GEN-LAST:event_btnEmprestarActionPerformed
 
-    private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
-       
-    }//GEN-LAST:event_btnAlterarMouseClicked
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        int linha = tabelaEmprestimo.getSelectedRow();
+        String id_emprestimo = tabelaEmprestimo.getValueAt(linha, 0).toString();
+
+        int confirmacao = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente excluir a linha?");
+
+        if (confirmacao == 0) {
+            try {
+                Conexao con = new Conexao();
+                Statement st = con.conexao.createStatement();
+                String sqlDelete = "DELETE FROM emprestimo WHERE id_emprestimo = " + id_emprestimo;
+
+                if (st.execute(sqlDelete)) {
+                    JOptionPane.showMessageDialog(null, "Não foi possível excluir a linha!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Deletado com sucesso!");
+                    Emp_limpar();
+                    popularTabelaEmprestimo();
+                    btnExcluir.setEnabled(false);
+                    btnAlterar.setEnabled(false);
+                    btnEmprestar.setEnabled(true);
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void jTextIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextIdActionPerformed
 
-    private void tabelaEmprestimoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaEmprestimoMouseClicked
-       
-        int row = tabelaEmprestimo.getSelectedRow();
-        String id = tabelaEmprestimo.getValueAt(row, 0).toString();
-        String id_livro= tabelaEmprestimo.getValueAt(row, 1).toString();
-        String data_emp= tabelaEmprestimo.getValueAt(row, 2).toString();
-        String data_dev = tabelaEmprestimo.getValueAt(row, 3).toString();
-        
-        
+    private void jComboTipoLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboTipoLivroActionPerformed
 
-        jTextId.setText(id);
-        jTextId_livro.setText(id_livro);
-        jTextData_emp.setText(data_emp);
-        jComboDtdev.setSelectedItem(data_dev);
-    }//GEN-LAST:event_tabelaEmprestimoMouseClicked
-
-    private void jTextNomePesquisa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomePesquisa2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextNomePesquisa2ActionPerformed
-
-    private void jTextNomePesquisa2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNomePesquisa2KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextNomePesquisa2KeyPressed
-
-    private void jComboDtdevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboDtdevActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboDtdevActionPerformed
-
-    private void jComboDvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboDvActionPerformed
         try {
-            popularTabelaEmprestimo();        // TODO add your handling code here:
+            popularTabelaLivros();
         } catch (SQLException ex) {
             Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jComboDvActionPerformed
 
+    }//GEN-LAST:event_jComboTipoLivroActionPerformed
+
+    private void jTextNomePesquisaLivroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNomePesquisaLivroKeyPressed
+
+       
+        try {
+            popularTabelaLivros();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+
+    }//GEN-LAST:event_jTextNomePesquisaLivroKeyPressed
+
+    private void jTextNomePesquisaLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomePesquisaLivroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextNomePesquisaLivroActionPerformed
+
+    private void tabelaLivroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaLivroMouseClicked
+
+        int row = tabelaLivro.getSelectedRow();
+        String id_livro = tabelaLivro.getValueAt(row, 0).toString();
+        String nome_livro= tabelaLivro.getValueAt(row, 1).toString();
+        String autor= tabelaLivro.getValueAt(row, 2).toString();
+        String ano = tabelaLivro.getValueAt(row, 3).toString();
+        String genero = tabelaLivro.getValueAt(row, 4).toString();
+        String edicao = tabelaLivro.getValueAt(row, 5).toString();
+        String estoque = tabelaLivro.getValueAt(row, 6).toString();
+
+        jTextId_livro.setText(id_livro);
+        jTextNomeL.setText(nome_livro);
+
+    }//GEN-LAST:event_tabelaLivroMouseClicked
+
+    private void tabelaPessoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaPessoaMouseClicked
+
+        int row = tabelaPessoa.getSelectedRow();
+        String id = tabelaPessoa.getValueAt(row, 0).toString();
+        String nome = tabelaPessoa.getValueAt(row, 1).toString();
+        String curso = tabelaPessoa.getValueAt(row, 2).toString();
+        String serie = tabelaPessoa.getValueAt(row, 3).toString();
+        String matricula = tabelaPessoa.getValueAt(row, 4).toString();
+
+        jTextId.setText(id);
+        jTextNome.setText(nome);
+
+    }//GEN-LAST:event_tabelaPessoaMouseClicked
+
+    private void jComboTipoPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboTipoPessoaActionPerformed
+
+        try {
+            popularTabelaPessoas();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jComboTipoPessoaActionPerformed
+
+    private void jTextNomePesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNomePesquisaKeyPressed
+        try {
+            popularTabelaEmprestimo();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            popularTabelaPessoas();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            popularTabelaLivros();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadEmp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextNomePesquisaKeyPressed
+
+    private void jTextNomePesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomePesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextNomePesquisaActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void jTextNomeLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomeLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextNomeLActionPerformed
+
+     
     /**
      * @param args the command line arguments
      */
@@ -649,6 +748,7 @@ public class CadEmp extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboDv;
     private javax.swing.JComboBox<String> jComboTipoLivro;
     private javax.swing.JComboBox<String> jComboTipoPessoa;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -657,6 +757,7 @@ public class CadEmp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -664,9 +765,11 @@ public class CadEmp extends javax.swing.JFrame {
     private javax.swing.JTextField jTextData_emp;
     private javax.swing.JTextField jTextId;
     private javax.swing.JTextField jTextId_livro;
+    private javax.swing.JTextField jTextNome;
+    private javax.swing.JTextField jTextNomeL;
     private javax.swing.JTextField jTextNomePesquisa;
-    private javax.swing.JTextField jTextNomePesquisa1;
-    private javax.swing.JTextField jTextNomePesquisa2;
+    private javax.swing.JTextField jTextNomePesquisaEmp;
+    private javax.swing.JTextField jTextNomePesquisaLivro;
     private javax.swing.JTable tabelaEmprestimo;
     private javax.swing.JTable tabelaLivro;
     private javax.swing.JTable tabelaPessoa;
@@ -706,7 +809,7 @@ public void popularTabelaPessoas() throws SQLException {
     }
 
 public void popularTabelaLivros() throws SQLException {
-        String nomeLivro = jTextNomePesquisa1.getText();
+        String nomeLivro = jTextNomePesquisaLivro.getText();
         String tipoLivro = jComboTipoLivro.getSelectedItem().toString();
 
         DefaultTableModel model = (DefaultTableModel) tabelaLivro.getModel();
@@ -741,17 +844,49 @@ public void popularTabelaLivros() throws SQLException {
 
     }
 
-   public void popularTabelaEmprestimo() throws SQLException {
-      
+public void popularTabelaEmprestimo() throws SQLException {
+       String nomeEmp = jTextNomePesquisaEmp.getText();
+        String tipoEmp = jComboDv.getSelectedItem().toString();
+
+        DefaultTableModel model = (DefaultTableModel) tabelaLivro.getModel();
+        model.setNumRows(0);
+
+        Conexao con = new Conexao();
+
+        Statement st = con.conexao.createStatement();
+
+        String sql = "SELECT * FROM emprestimo";
+
+        if (!nomeEmp.isEmpty() && !tipoEmp.equals("Geral")) {
+            sql += " WHERE nome LIKE '" + nomeEmp + "%' AND data_dev = '" + tipoEmp + "'";
+        } else if (!tipoEmp.equals("Geral")) {
+            sql += " WHERE data_dev = '" + tipoEmp + "'";
+        } else if (!nomeEmp.isEmpty()) {
+            sql += " WHERE nome LIKE '" + nomeEmp + "%'";
+        }
+
+        ResultSet resultado = st.executeQuery(sql);
+
+        while (resultado.next()) {
+            model.addRow(new Object[]{
+                resultado.getString("id_emprestimo"),
+                resultado.getString("id"),
+                resultado.getString("id_livro"),
+                resultado.getString("nome_livro"),
+                resultado.getString("dat_emp"),
+                resultado.getString("dat_dev"),});
+        }
 
     }
         
     public void Emp_limpar() {
         jTextId.setText("");
+        jTextNome.setText("");
         jTextId_livro.setText("");
+        jTextNomeL.setText("");
         jTextData_emp.setText("");
         jComboDtdev.setSelectedIndex(0);
-        jTextNomePesquisa2.setText("");
+        
         
     }
 }

@@ -73,13 +73,13 @@ public class CadLivro extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel1.setText("Autor:");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel2.setText("Ano:");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel3.setText("Genero:");
 
         jComboGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Científico", "Filosofia", "Ficção", "História", "Poesia" }));
@@ -89,7 +89,7 @@ public class CadLivro extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel5.setText("Edicao:");
 
         btnSalvarLivro.setBackground(new java.awt.Color(34, 16, 111));
@@ -179,7 +179,7 @@ public class CadLivro extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel6.setText("Estoque:");
 
         jTextNomeL.addActionListener(new java.awt.event.ActionListener() {
@@ -188,7 +188,7 @@ public class CadLivro extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel4.setText("Nome LIvro:");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 09/07/2022 às 14:19
+-- Tempo de geração: 09/07/2022 às 16:58
 -- Versão do servidor: 10.4.18-MariaDB
 -- Versão do PHP: 8.0.5
 
@@ -43,7 +43,8 @@ CREATE TABLE `emprestimo` (
 
 INSERT INTO `emprestimo` (`id_emprestimo`, `id`, `nome`, `id_livro`, `nome_livro`, `data_emp`, `data_dev`) VALUES
 (9, 15, 'marcelo amaro', 3, 'O Rei de Roma', '20/11/2022', 'Uma semanal'),
-(11, 16, 'italo siqueira', 3, 'O Rei de Roma', '23/12/2022', 'Dois dias');
+(11, 16, 'italo siqueira', 3, 'O Rei de Roma', '23/12/2022', 'Dois dias'),
+(12, 19, 'marcelo moreira', 6, 'Instalando impressora', '12/05/2022', 'Duas semana');
 
 -- --------------------------------------------------------
 
@@ -67,7 +68,9 @@ CREATE TABLE `livro` (
 
 INSERT INTO `livro` (`id_livro`, `nome_livro`, `autor`, `ano`, `genero`, `edicao`, `estoque`) VALUES
 (3, 'O Rei de Roma', 'marcelo amaro', '1992', 'Científico', 'primeira', 'sim'),
-(4, 'Naruto', 'SKIHUNGF', '2014', 'Ficção', 'quinta', 'sim');
+(4, 'Naruto', 'SKIHUNGF', '2014', 'Ficção', 'quinta', 'sim'),
+(5, 'A volta de quem nao foi', 'paulo', '1972', 'Filosofia', 'primeira', 'nao'),
+(6, 'Instalando impressora', 'Charles', '2022', 'Científico', 'primeira', 'sim');
 
 -- --------------------------------------------------------
 
@@ -91,7 +94,8 @@ INSERT INTO `pessoas` (`id`, `nome`, `curso`, `serie`, `matricula`) VALUES
 (15, 'marcelo amaro', 'computação', '3°Ano', '1210'),
 (16, 'italo siqueira', 'agro', '2°Ano', '1212'),
 (17, 'jonas lima', 'arte', '1°Ano', '1213'),
-(18, 'erlano ee', 'computação', 'Professor', '1215');
+(18, 'erlano ee', 'computação', 'Professor', '1215'),
+(19, 'marcelo moreira', 'computação', '3°Ano', '12126');
 
 --
 -- Índices para tabelas despejadas
@@ -101,7 +105,9 @@ INSERT INTO `pessoas` (`id`, `nome`, `curso`, `serie`, `matricula`) VALUES
 -- Índices de tabela `emprestimo`
 --
 ALTER TABLE `emprestimo`
-  ADD PRIMARY KEY (`id_emprestimo`);
+  ADD PRIMARY KEY (`id_emprestimo`),
+  ADD KEY `fk_id` (`id`),
+  ADD KEY `fk_id_livro` (`id_livro`);
 
 --
 -- Índices de tabela `livro`
@@ -123,19 +129,30 @@ ALTER TABLE `pessoas`
 -- AUTO_INCREMENT de tabela `emprestimo`
 --
 ALTER TABLE `emprestimo`
-  MODIFY `id_emprestimo` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_emprestimo` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `livro`
 --
 ALTER TABLE `livro`
-  MODIFY `id_livro` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_livro` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `pessoas`
 --
 ALTER TABLE `pessoas`
-  MODIFY `id` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- Restrições para tabelas despejadas
+--
+
+--
+-- Restrições para tabelas `emprestimo`
+--
+ALTER TABLE `emprestimo`
+  ADD CONSTRAINT `fk_id` FOREIGN KEY (`id`) REFERENCES `pessoas` (`id`),
+  ADD CONSTRAINT `fk_id_livro` FOREIGN KEY (`id_livro`) REFERENCES `livro` (`id_livro`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

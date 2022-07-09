@@ -858,14 +858,11 @@ public void popularTabelaEmprestimo() throws SQLException {
         String sql = "SELECT * FROM emprestimo";
 
         if (!nomeEmp.isEmpty() && !tipoEmp.equals("Geral")) {
-            sql += " WHERE nome LIKE '" + nomeEmp + "%' AND data_dev = '" + tipoEmp + "'";
-            
+            sql += " WHERE nome LIKE '" + nomeEmp + "%' AND data_dev = '" + tipoEmp + "'";    
         } else if (!tipoEmp.equals("Geral")) {
-            sql += " WHERE data_dev = '" + tipoEmp + "'";
-            
+            sql += " WHERE data_dev = '" + tipoEmp + "'";   
         } else if (!nomeEmp.isEmpty()) {
-            sql += " WHERE nome LIKE '" + nomeEmp + "%'";
-            
+            sql += " WHERE nome LIKE '" + nomeEmp + "%'";   
         }
 
         ResultSet resultado = st.executeQuery(sql);
@@ -874,11 +871,11 @@ public void popularTabelaEmprestimo() throws SQLException {
             model.addRow(new Object[]{
                 resultado.getString("id_emprestimo"),
                 resultado.getString("id"),
+                resultado.getString("nome"),
                 resultado.getString("id_livro"),
                 resultado.getString("nome_livro"),
                 resultado.getString("data_emp"),
                 resultado.getString("data_dev"),});
-            System.out.println("while");
         }
 
     }

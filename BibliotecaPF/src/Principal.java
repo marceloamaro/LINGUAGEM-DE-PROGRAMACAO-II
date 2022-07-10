@@ -97,7 +97,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jMenuPessoa.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuPessoa.setText("Cadastrar/Listra");
+        jMenuPessoa.setText("Cadastrar/Listar");
         jMenuPessoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuPessoaActionPerformed(evt);
@@ -114,7 +114,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jMenuLivro.setText("Cadastrar/Listra");
+        jMenuLivro.setText("Cadastrar/Listar");
         jMenuLivro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuLivroActionPerformed(evt);
@@ -131,7 +131,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jMenuEmprestimo.setText("Cadastrar/Listra");
+        jMenuEmprestimo.setText("Cadastrar/Listar");
         jMenuEmprestimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuEmprestimoActionPerformed(evt);

@@ -63,6 +63,7 @@ public class CadEmp extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextId_livro = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        jTextData_emp = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnExcluir = new javax.swing.JButton();
         btnEmprestar = new javax.swing.JButton();
@@ -77,7 +78,6 @@ public class CadEmp extends javax.swing.JFrame {
         jTextNome = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextNomeL = new javax.swing.JTextField();
-        jTextData_emp = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -289,13 +289,6 @@ public class CadEmp extends javax.swing.JFrame {
             }
         });
 
-        jTextData_emp.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM))));
-        jTextData_emp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextData_empActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -308,14 +301,14 @@ public class CadEmp extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(jTextNomePesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboTipoPessoa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jComboTipoPessoa, 0, 191, Short.MAX_VALUE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTextNomePesquisaLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboTipoLivro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jComboTipoLivro, 0, 163, Short.MAX_VALUE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -347,7 +340,7 @@ public class CadEmp extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextData_emp, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextData_emp))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -355,7 +348,7 @@ public class CadEmp extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextNomeL))
+                                .addComponent(jTextNomeL, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -419,7 +412,7 @@ public class CadEmp extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextData_emp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextData_emp, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -712,10 +705,6 @@ public class CadEmp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextNomeLActionPerformed
 
-    private void jTextData_empActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextData_empActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextData_empActionPerformed
-
      
     /**
      * @param args the command line arguments
@@ -779,7 +768,7 @@ public class CadEmp extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JFormattedTextField jTextData_emp;
+    private javax.swing.JTextField jTextData_emp;
     private javax.swing.JTextField jTextId;
     private javax.swing.JTextField jTextId_livro;
     private javax.swing.JTextField jTextNome;
